@@ -227,14 +227,7 @@ section{
     padding: 25px;
 }
 
-.project-box img{
-     width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 3px solid #00d9ff;
-     animation: floatImage 4s ease-in-out infinite;
-}
+
 .project-layer h4{
     font-size: 24px;
     margin-bottom: 10px;
