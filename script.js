@@ -118,10 +118,10 @@ window.addEventListener('scroll',()=>{
             bar.classList.contains('html') ? '95%' :
             bar.classList.contains('css') ? '90%' :
             bar.classList.contains('js') ? '85%' :
-            bar.classList.contains('react') ? '75%' :
-            bar.classList.contains('php') ? '85%' :
-            bar.classList.contains('mysql') ? '80%' :
-            bar.classList.contains('github') ? '85%' :
+            bar.classList.contains('react') ? '65%' :
+            bar.classList.contains('php') ? '75%' :
+            bar.classList.contains('mysql') ? '85%' :
+            bar.classList.contains('github') ? '90%' :
             '95%';
 
             bar.style.width = width;
@@ -179,68 +179,149 @@ counters.forEach(counter => {
 // CONTACT FORM VALIDATION
 
 const form = document.getElementById("contact-form");
-const successMessage = document.getElementById("successMessage");
 
-const inputs = form.querySelectorAll("input, textarea");
+const inputs = {
+    name: document.getElementById("name"),
+    email: document.getElementById("email"),
+    phone: document.getElementById("phone"),
+    subject: document.getElementById("subject"),
+    message: document.getElementById("message")
+};
 
-// VALIDATION FUNCTION
-function validateInput(input){
+// =======================
+// VALIDATION RULES
+// =======================
 
-    const parent = input.parentElement;
+function showError(input, message) {
+    const box = input.parentElement;
+    box.classList.add("error");
+    box.classList.remove("success");
 
-    if(input.value.trim() === ""){
-        parent.classList.add("error");
-        parent.classList.remove("success");
-        return false;
-    }else{
-        parent.classList.remove("error");
-        parent.classList.add("success");
-        return true;
+    let error = box.querySelector(".error-text");
+
+    if (!error) {
+        error = document.createElement("small");
+        error.classList.add("error-text");
+        box.appendChild(error);
     }
 
+    error.innerText = message;
 }
 
-// REAL-TIME VALIDATION
-inputs.forEach(input=>{
+function showSuccess(input) {
+    const box = input.parentElement;
+    box.classList.remove("error");
+    box.classList.add("success");
 
-    input.addEventListener("input", ()=> {
-        validateInput(input);
-    });
+    const error = box.querySelector(".error-text");
+    if (error) error.remove();
+}
 
-});
+// =======================
+// FIELD VALIDATORS
+// =======================
 
+function validateName() {
+    const value = inputs.name.value.trim();
+
+    if (value.length < 3) {
+        showError(inputs.name, "Name must be at least 3 characters");
+        return false;
+    }
+
+    showSuccess(inputs.name);
+    return true;
+}
+
+function validateEmail() {
+    const value = inputs.email.value.trim();
+
+    const pattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (!pattern.test(value)) {
+        showError(inputs.email, "Enter a valid email address");
+        return false;
+    }
+
+    showSuccess(inputs.email);
+    return true;
+}
+
+function validatePhone() {
+    const value = inputs.phone.value.trim();
+
+    const pattern = /^[0-9+ ]{8,15}$/;
+
+    if (!pattern.test(value)) {
+        showError(inputs.phone, "Enter a valid phone number");
+        return false;
+    }
+
+    showSuccess(inputs.phone);
+    return true;
+}
+
+function validateSubject() {
+    const value = inputs.subject.value.trim();
+
+    if (value.length < 5) {
+        showError(inputs.subject, "Subject must be at least 5 characters");
+        return false;
+    }
+
+    showSuccess(inputs.subject);
+    return true;
+}
+
+function validateMessage() {
+    const value = inputs.message.value.trim();
+
+    if (value.length < 10) {
+        showError(inputs.message, "Message must be at least 10 characters");
+        return false;
+    }
+
+    showSuccess(inputs.message);
+    return true;
+}
+
+// =======================
+// LIVE VALIDATION
+// =======================
+
+inputs.name.addEventListener("input", validateName);
+inputs.email.addEventListener("input", validateEmail);
+inputs.phone.addEventListener("input", validatePhone);
+inputs.subject.addEventListener("input", validateSubject);
+inputs.message.addEventListener("input", validateMessage);
+
+// =======================
 // FORM SUBMIT
-form.addEventListener("submit", function(e){
+// =======================
 
+form.addEventListener("submit", function (e) {
     e.preventDefault();
 
-    let isValid = true;
+    const isValid =
+        validateName() &
+        validateEmail() &
+        validatePhone() &
+        validateSubject() &
+        validateMessage();
 
-    inputs.forEach(input=>{
-        if(!validateInput(input)){
-            isValid = false;
-        }
-    });
+    if (isValid) {
 
-    if(isValid){
+        alert("Message sent successfully!");
 
-        // SHOW SUCCESS MESSAGE
-        successMessage.classList.add("show");
-
-        // RESET FORM
         form.reset();
 
-        // REMOVE SUCCESS BORDER STYLES
-        document.querySelectorAll(".input-box")
-        .forEach(box=>{
+        // clear styles
+        document.querySelectorAll(".input-box").forEach(box => {
             box.classList.remove("success");
         });
 
-        // HIDE AFTER 3 SECONDS
-        setTimeout(()=>{
-            successMessage.classList.remove("show");
-        },3000);
-
+    } else {
+        alert("Please fix errors before submitting.");
     }
-
+});
 });
