@@ -19,7 +19,23 @@
     --text-color: #ededed;
     --main-color: #00abf0;
 }
+.about-card,
+.stat-card,
+.project-box,
+.skill-box,
+.home-content,
+.home-img,
+.contact form{
 
+    opacity:0;
+    transform:translateY(60px);
+    transition:1s;
+}
+
+.show{
+    opacity:1;
+    transform:translateY(0);
+}
 body{
     background: var(--bg-color);
     color: var(--text-color);
