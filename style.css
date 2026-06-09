@@ -27,7 +27,7 @@
 .home-img,
 .contact form{
 
-    opacity:0;
+    opacity:1;
     transform:translateY(60px);
     transition:1s;
 }
