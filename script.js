@@ -90,6 +90,16 @@ cards.forEach(card=>{
     });
 
 });
+document.querySelectorAll('.dance-text').forEach(text=>{
+
+    text.innerHTML =
+    text.textContent
+    .split('')
+    .map(letter=>
+        `<span>${letter}</span>`
+    ).join('');
+
+});
 // TYPING EFFECT
 
 const typed = new Typed('.multiple-text', {
