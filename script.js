@@ -58,7 +58,38 @@ document.querySelectorAll(
     observer.observe(el);
 
 });
+const cards = document.querySelectorAll(
+'.project-box,.home-img'
+);
 
+cards.forEach(card=>{
+
+    card.addEventListener('mousemove',(e)=>{
+
+        const x = e.offsetX;
+        const y = e.offsetY;
+
+        const rotateY =
+        (x - card.clientWidth/2)/20;
+
+        const rotateX =
+        -(y - card.clientHeight/2)/20;
+
+        card.style.transform =
+        `perspective(1000px)
+        rotateY(${rotateY}deg)
+        rotateX(${rotateX}deg)`;
+
+    });
+
+    card.addEventListener('mouseleave',()=>{
+
+        card.style.transform =
+        'perspective(1000px) rotateY(0) rotateX(0)';
+
+    });
+
+});
 // TYPING EFFECT
 
 const typed = new Typed('.multiple-text', {
