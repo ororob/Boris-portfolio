@@ -179,55 +179,68 @@ counters.forEach(counter => {
 // CONTACT FORM VALIDATION
 
 const form = document.getElementById("contact-form");
+const successMessage = document.getElementById("successMessage");
 
+const inputs = form.querySelectorAll("input, textarea");
+
+// VALIDATION FUNCTION
+function validateInput(input){
+
+    const parent = input.parentElement;
+
+    if(input.value.trim() === ""){
+        parent.classList.add("error");
+        parent.classList.remove("success");
+        return false;
+    }else{
+        parent.classList.remove("error");
+        parent.classList.add("success");
+        return true;
+    }
+
+}
+
+// REAL-TIME VALIDATION
+inputs.forEach(input=>{
+
+    input.addEventListener("input", ()=> {
+        validateInput(input);
+    });
+
+});
+
+// FORM SUBMIT
 form.addEventListener("submit", function(e){
 
     e.preventDefault();
 
-    // INPUT VALUES
+    let isValid = true;
 
-    const name = document.getElementById("name").value.trim();
-    const email = document.getElementById("email").value.trim();
-    const phone = document.getElementById("phone").value.trim();
-    const subject = document.getElementById("subject").value.trim();
-    const message = document.getElementById("message").value.trim();
+    inputs.forEach(input=>{
+        if(!validateInput(input)){
+            isValid = false;
+        }
+    });
 
-    // EMAIL REGEX
+    if(isValid){
 
-    const emailPattern =
-        /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        // SHOW SUCCESS MESSAGE
+        successMessage.classList.add("show");
 
-    // VALIDATION
+        // RESET FORM
+        form.reset();
 
-    if(name === ""){
-        alert("Full Name is required");
-        return;
+        // REMOVE SUCCESS BORDER STYLES
+        document.querySelectorAll(".input-box")
+        .forEach(box=>{
+            box.classList.remove("success");
+        });
+
+        // HIDE AFTER 3 SECONDS
+        setTimeout(()=>{
+            successMessage.classList.remove("show");
+        },3000);
+
     }
-
-    if(!emailPattern.test(email)){
-        alert("Enter a valid email address");
-        return;
-    }
-
-    if(phone.length < 8){
-        alert("Enter a valid phone number");
-        return;
-    }
-
-    if(subject === ""){
-        alert("Subject is required");
-        return;
-    }
-
-    if(message.length < 10){
-        alert("Message must be at least 10 characters");
-        return;
-    }
-
-    // SUCCESS
-
-    alert("Message Sent Successfully!");
-
-    form.reset();
 
 });
