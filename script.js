@@ -37,7 +37,27 @@ window.onscroll = () => {
     });
 
 };
+const observer = new IntersectionObserver((entries)=>{
 
+    entries.forEach(entry=>{
+
+        if(entry.isIntersecting){
+            entry.target.classList.add('show');
+        }
+
+    });
+
+},{
+    threshold:0.15
+});
+
+document.querySelectorAll(
+'.about-card, .stat-card, .project-box, .skill-box, .home-content, .home-img, .contact form'
+).forEach(el=>{
+
+    observer.observe(el);
+
+});
 
 // TYPING EFFECT
 
