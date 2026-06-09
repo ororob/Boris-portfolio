@@ -1,41 +1,27 @@
 // js/script.js
 // MOBILE MENU
 
-let menuIcon = document.querySelector('#menu-icon');
-let navbar = document.querySelector('.navbar');
+const menuToggle = document.getElementById("menu-toggle");
+const navbar = document.getElementById("navbar");
+const closeMenu = document.getElementById("close-menu");
+const navLinks = document.querySelectorAll(".navbar a");
 
-menuIcon.onclick = () => {
-    navbar.classList.toggle('active');
-};
+// OPEN MENU
+menuToggle.addEventListener("click", () => {
+    navbar.classList.add("show");
+});
 
-// ACTIVE NAVBAR LINKS
+// CLOSE MENU
+closeMenu.addEventListener("click", () => {
+    navbar.classList.remove("show");
+});
 
-let sections = document.querySelectorAll('section');
-let navLinks = document.querySelectorAll('.navbar a');
-
-window.onscroll = () => {
-
-    sections.forEach(sec => {
-
-        let top = window.scrollY;
-        let offset = sec.offsetTop - 150;
-        let height = sec.offsetHeight;
-        let id = sec.getAttribute('id');
-
-        if(top >= offset && top < offset + height){
-
-            navLinks.forEach(links => {
-                links.classList.remove('active');
-            });
-
-            document
-                .querySelector('.navbar a[href*=' + id + ']')
-                .classList.add('active');
-        }
-
+// CLOSE ON LINK CLICK (important UX)
+navLinks.forEach(link => {
+    link.addEventListener("click", () => {
+        navbar.classList.remove("show");
     });
-
-};
+});
 const observer = new IntersectionObserver((entries)=>{
 
     entries.forEach(entry=>{
