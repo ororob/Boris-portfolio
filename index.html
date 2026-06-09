@@ -402,7 +402,7 @@
 <div class="project-stats">
 
     <div>
-        <h3 class="counter" data-target="5">0</h3>
+        <h3 class="counter" data-target="3">0</h3>
         <span>Projects</span>
     </div>
 
@@ -556,68 +556,113 @@
     <!-- GITHUB SECTION -->
    
 
-  <section class="contact" id="contact">
+<section class="contact" id="contact">
 
-    <h2 class="heading">
-        Contact <span>Me!</span>
-    </h2>
+    <div class="contact-container">
 
-    <form id="contact-form">
+        <div class="contact-header">
 
-        <div class="input-box">
+            <span class="section-tag">
+                Get In Touch
+            </span>
 
-            <input 
-                type="text"
-                id="name"
-                placeholder="Full Name"
-                required
-            >
+            <h2 class="heading">
+                Let's Work <span>Together</span>
+            </h2>
 
-            <input 
-                type="email"
-                id="email"
-                placeholder="Email Address"
-                required
-            >
+            <p>
+                Have a project idea, job opportunity, or collaboration?
+                Send a message and I’ll respond as soon as possible.
+            </p>
 
         </div>
 
-        <div class="input-box">
+        <div class="contact-content">
 
-            <input 
-                type="tel"
-                id="phone"
-                placeholder="Mobile Number"
-                required
-            >
+            <!-- LEFT INFO -->
+            <div class="contact-info">
 
-            <input 
-                type="text"
-                id="subject"
-                placeholder="Email Subject"
-                required
-            >
+                <div class="info-box">
+                    <i class="fas fa-envelope"></i>
+                    <div>
+                        <h4>Email</h4>
+                        <span>yourmail@gmail.com</span>
+                    </div>
+                </div>
+
+                <div class="info-box">
+                    <i class="fas fa-phone"></i>
+                    <div>
+                        <h4>Phone</h4>
+                        <span>+237 XXX XXX XXX</span>
+                    </div>
+                </div>
+
+                <div class="info-box">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <div>
+                        <h4>Location</h4>
+                        <span>Douala, Cameroon</span>
+                    </div>
+                </div>
+
+                <div class="social-links">
+
+                    <a href="#"><i class="fab fa-github"></i></a>
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                    <a href="#"><i class="fab fa-whatsapp"></i></a>
+
+                </div>
+
+            </div>
+
+            <!-- FORM -->
+            <form id="contact-form" class="contact-form">
+
+                <div class="input-row">
+
+                    <div class="input-box">
+                        <input type="text" id="name" required>
+                        <label>Full Name</label>
+                    </div>
+
+                    <div class="input-box">
+                        <input type="email" id="email" required>
+                        <label>Email Address</label>
+                    </div>
+
+                </div>
+
+                <div class="input-row">
+
+                    <div class="input-box">
+                        <input type="tel" id="phone" required>
+                        <label>Phone Number</label>
+                    </div>
+
+                    <div class="input-box">
+                        <input type="text" id="subject" required>
+                        <label>Subject</label>
+                    </div>
+
+                </div>
+
+                <div class="input-box textarea-box">
+                    <textarea id="message" required></textarea>
+                    <label>Your Message</label>
+                </div>
+
+                <button type="submit" class="btn">
+                    Send Message
+                </button>
+
+            </form>
 
         </div>
 
-        <textarea
-            id="message"
-            cols="30"
-            rows="10"
-            placeholder="Your Message"
-            required
-        ></textarea>
-
-        <input 
-            type="submit"
-            value="Send Message"
-            class="btn"
-        >
-
-    </form>
+    </div>
 
 </section>
-
     <!-- FOOTER -->
     <footer class="footer">
 
