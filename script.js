@@ -100,6 +100,38 @@ document.querySelectorAll('.dance-text').forEach(text=>{
     ).join('');
 
 });
+const skillSection =
+document.querySelector('.skills');
+
+const progressBars =
+document.querySelectorAll('.progress');
+
+window.addEventListener('scroll',()=>{
+
+    const sectionTop =
+    skillSection.offsetTop - 400;
+
+    if(window.scrollY > sectionTop){
+
+        progressBars.forEach(bar=>{
+
+            const width =
+            bar.classList.contains('html') ? '95%' :
+            bar.classList.contains('css') ? '90%' :
+            bar.classList.contains('js') ? '85%' :
+            bar.classList.contains('react') ? '75%' :
+            bar.classList.contains('php') ? '85%' :
+            bar.classList.contains('mysql') ? '80%' :
+            bar.classList.contains('github') ? '85%' :
+            '95%';
+
+            bar.style.width = width;
+
+        });
+
+    }
+
+});
 // TYPING EFFECT
 
 const typed = new Typed('.multiple-text', {
