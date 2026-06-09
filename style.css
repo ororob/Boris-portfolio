@@ -73,47 +73,131 @@ section{
     color: var(--main-color);
 }
 
-/* HEADER */
+
+
+/* =====================
+   HEADER
+===================== */
 
 .header{
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    padding: 20px 9%;
-    background: rgba(8, 27, 41, 0.9);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    z-index: 1000;
-    backdrop-filter: blur(10px);
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    padding:18px 10%;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    z-index:1000;
+
+    background:rgba(15,23,42,0.7);
+    backdrop-filter:blur(12px);
+    border-bottom:1px solid rgba(255,255,255,0.08);
 }
 
+/* LOGO */
+
 .logo{
-    font-size: 25px;
-    color: var(--text-color);
-    font-weight: 700;
+    font-size:1.6rem;
+    font-weight:700;
+    color:white;
+    text-decoration:none;
+}
+
+.logo span{
+    color:cyan;
+}
+
+/* NAV */
+
+.navbar{
+    display:flex;
+    gap:25px;
 }
 
 .navbar a{
-    font-size: 17px;
-    color: var(--text-color);
-    margin-left: 35px;
-    transition: .3s;
+    color:#cbd5e1;
+    font-weight:500;
+    position:relative;
+    transition:.3s;
 }
 
 .navbar a:hover,
 .navbar a.active{
-    color: var(--main-color);
+    color:cyan;
 }
 
-#menu-icon{
-    font-size: 30px;
-    color: var(--text-color);
-    display: none;
-    cursor: pointer;
+.navbar a::after{
+    content:"";
+    position:absolute;
+    left:0;
+    bottom:-6px;
+    width:0%;
+    height:2px;
+    background:cyan;
+    transition:.3s;
 }
 
+.navbar a:hover::after,
+.navbar a.active::after{
+    width:100%;
+}
+
+/* MENU ICON */
+
+.menu-toggle{
+    display:none;
+    font-size:1.6rem;
+    color:white;
+    cursor:pointer;
+}
+
+/* CLOSE BUTTON */
+
+.close-menu{
+    display:none;
+    font-size:1.8rem;
+    color:white;
+    position:absolute;
+    top:20px;
+    right:20px;
+    cursor:pointer;
+}
+
+/* =====================
+   MOBILE NAV
+===================== */
+
+@media(max-width:768px){
+
+    .menu-toggle{
+        display:block;
+    }
+
+    .navbar{
+        position:fixed;
+        top:0;
+        right:-100%;
+        width:70%;
+        height:100vh;
+
+        flex-direction:column;
+        justify-content:center;
+        align-items:center;
+
+        background:#0f172a;
+        transition:.4s ease;
+        gap:30px;
+    }
+
+    .navbar.show{
+        right:0;
+    }
+
+    .close-menu{
+        display:block;
+    }
+}
 /* HERO SECTION */
 
 .home{
