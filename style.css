@@ -110,7 +110,9 @@ section{
     margin-bottom:20px;
     font-size:.9rem;
 }
-
+.multiple-text{
+    color: blue;
+}
 .home-content h1{
     font-size:4.5rem;
     line-height:1.1;
