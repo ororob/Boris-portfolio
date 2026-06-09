@@ -37,16 +37,7 @@ window.onscroll = () => {
     });
 
 };
-window.addEventListener('scroll', () => {
 
-    const image = document.querySelector('.image-wrapper');
-
-    let value = window.scrollY;
-
-    image.style.transform =
-    `translateY(${value * 0.08}px)`;
-
-});
 
 // TYPING EFFECT
 
