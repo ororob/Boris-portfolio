@@ -732,42 +732,177 @@ section{
 }
 /* PROJECTS */
 
-.project-layer{
-    padding: 25px;
+/* =====================
+   PROJECTS
+===================== */
+
+.projects{
+    padding:100px 10%;
 }
 
-
-.project-layer h4{
-    font-size: 24px;
-    margin-bottom: 10px;
+.projects-header{
+    text-align:center;
+    margin-bottom:60px;
 }
 
-.project-layer p{
-    font-size: 15px;
-    line-height: 1.6;
-}
-.project-tech{
-    display: flex;
-    gap: 10px;
-    margin-top: 15px;
-    justify-content: center;
-    flex-wrap: wrap;
+.projects-header p{
+    max-width:800px;
+    margin:auto;
+    color:#94a3b8;
+    line-height:1.8;
 }
 
-.project-tech span{
-    background: rgba(255,255,255,0.15);
-    padding: 6px 12px;
-    border-radius: 20px;
-    font-size: 12px;
-}
-.skill-box:hover,
-.service-box:hover,
-.project-box:hover,
-.cert-box:hover,
-.github-box:hover{
+.projects-container{
 
-    transform:translateY(-15px);
-    box-shadow:0 0 30px cyan;
+    display:grid;
+
+    grid-template-columns:
+    repeat(auto-fit,minmax(350px,1fr));
+
+    gap:30px;
+}
+
+/* CARD */
+
+.project-card{
+
+    background:
+    rgba(255,255,255,.05);
+
+    backdrop-filter:blur(15px);
+
+    border:
+    1px solid rgba(255,255,255,.08);
+
+    border-radius:25px;
+
+    overflow:hidden;
+
+    transition:.5s;
+}
+
+.project-card:hover{
+
+    transform:translateY(-10px);
+
+    border-color:cyan;
+
+    box-shadow:
+    0 0 25px rgba(0,255,255,.25);
+}
+
+/* CONTENT */
+
+.project-content{
+    padding:30px;
+}
+
+.project-content h3{
+
+    color:white;
+
+    margin-bottom:15px;
+
+    font-size:1.5rem;
+}
+
+.project-content p{
+
+    color:#cbd5e1;
+
+    line-height:1.8;
+
+    margin-bottom:25px;
+}
+
+/* STACK */
+
+.tech-stack{
+
+    display:flex;
+
+    flex-wrap:wrap;
+
+    gap:10px;
+
+    margin-bottom:25px;
+}
+
+.tech-stack span{
+
+    background:#1e293b;
+
+    padding:8px 16px;
+
+    border-radius:30px;
+
+    color:white;
+
+    transition:.4s;
+}
+
+.tech-stack span:hover{
+
+    background:cyan;
+
+    color:#0f172a;
+}
+
+/* FEATURES */
+
+.project-features{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:10px;
+
+    color:#94a3b8;
+
+    margin-bottom:25px;
+}
+
+/* BUTTON */
+
+.project-buttons{
+
+    display:flex;
+
+    gap:15px;
+}
+
+.project-btn{
+
+    padding:12px 24px;
+
+    background:cyan;
+
+    color:#0f172a;
+
+    border-radius:40px;
+
+    font-weight:600;
+
+    transition:.4s;
+}
+
+.project-btn:hover{
+
+    transform:translateY(-4px);
+
+    box-shadow:0 0 20px cyan;
+}
+
+/* MOBILE */
+
+@media(max-width:768px){
+
+    .projects{
+
+        padding:80px 6%;
+    }
+
 }
 /* CONTACT */
 
