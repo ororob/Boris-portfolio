@@ -177,151 +177,69 @@ counters.forEach(counter => {
 
 });
 // CONTACT FORM VALIDATION
-
 const form = document.getElementById("contact-form");
+const successMessage = document.getElementById("successMessage");
 
-const inputs = {
-    name: document.getElementById("name"),
-    email: document.getElementById("email"),
-    phone: document.getElementById("phone"),
-    subject: document.getElementById("subject"),
-    message: document.getElementById("message")
-};
+const inputs = form.querySelectorAll("input, textarea");
 
-// =======================
-// VALIDATION RULES
-// =======================
+// VALIDATION FUNCTION
+function validateInput(input){
 
-function showError(input, message) {
-    const box = input.parentElement;
-    box.classList.add("error");
-    box.classList.remove("success");
+    const parent = input.parentElement;
 
-    let error = box.querySelector(".error-text");
-
-    if (!error) {
-        error = document.createElement("small");
-        error.classList.add("error-text");
-        box.appendChild(error);
-    }
-
-    error.innerText = message;
-}
-
-function showSuccess(input) {
-    const box = input.parentElement;
-    box.classList.remove("error");
-    box.classList.add("success");
-
-    const error = box.querySelector(".error-text");
-    if (error) error.remove();
-}
-
-// =======================
-// FIELD VALIDATORS
-// =======================
-
-function validateName() {
-    const value = inputs.name.value.trim();
-
-    if (value.length < 3) {
-        showError(inputs.name, "Name must be at least 3 characters");
+    if(input.value.trim() === ""){
+        parent.classList.add("error");
+        parent.classList.remove("success");
         return false;
+    }else{
+        parent.classList.remove("error");
+        parent.classList.add("success");
+        return true;
     }
 
-    showSuccess(inputs.name);
-    return true;
 }
 
-function validateEmail() {
-    const value = inputs.email.value.trim();
+// REAL-TIME VALIDATION
+inputs.forEach(input=>{
 
-    const pattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    input.addEventListener("input", ()=> {
+        validateInput(input);
+    });
 
-    if (!pattern.test(value)) {
-        showError(inputs.email, "Enter a valid email address");
-        return false;
-    }
+});
 
-    showSuccess(inputs.email);
-    return true;
-}
-
-function validatePhone() {
-    const value = inputs.phone.value.trim();
-
-    const pattern = /^[0-9+ ]{8,15}$/;
-
-    if (!pattern.test(value)) {
-        showError(inputs.phone, "Enter a valid phone number");
-        return false;
-    }
-
-    showSuccess(inputs.phone);
-    return true;
-}
-
-function validateSubject() {
-    const value = inputs.subject.value.trim();
-
-    if (value.length < 5) {
-        showError(inputs.subject, "Subject must be at least 5 characters");
-        return false;
-    }
-
-    showSuccess(inputs.subject);
-    return true;
-}
-
-function validateMessage() {
-    const value = inputs.message.value.trim();
-
-    if (value.length < 10) {
-        showError(inputs.message, "Message must be at least 10 characters");
-        return false;
-    }
-
-    showSuccess(inputs.message);
-    return true;
-}
-
-// =======================
-// LIVE VALIDATION
-// =======================
-
-inputs.name.addEventListener("input", validateName);
-inputs.email.addEventListener("input", validateEmail);
-inputs.phone.addEventListener("input", validatePhone);
-inputs.subject.addEventListener("input", validateSubject);
-inputs.message.addEventListener("input", validateMessage);
-
-// =======================
 // FORM SUBMIT
-// =======================
+form.addEventListener("submit", function(e){
 
-form.addEventListener("submit", function (e) {
     e.preventDefault();
 
-    const isValid =
-        validateName() &
-        validateEmail() &
-        validatePhone() &
-        validateSubject() &
-        validateMessage();
+    let isValid = true;
 
-    if (isValid) {
+    inputs.forEach(input=>{
+        if(!validateInput(input)){
+            isValid = false;
+        }
+    });
 
-        alert("Message sent successfully!");
+    if(isValid){
 
+        // SHOW SUCCESS MESSAGE
+        successMessage.classList.add("show");
+
+        // RESET FORM
         form.reset();
 
-        // clear styles
-        document.querySelectorAll(".input-box").forEach(box => {
+        // REMOVE SUCCESS BORDER STYLES
+        document.querySelectorAll(".input-box")
+        .forEach(box=>{
             box.classList.remove("success");
         });
 
-    } else {
-        alert("Please fix errors before submitting.");
+        // HIDE AFTER 3 SECONDS
+        setTimeout(()=>{
+            successMessage.classList.remove("show");
+        },3000);
+
     }
-});
+
 });
