@@ -31,7 +31,24 @@
     transform:translateY(60px);
     transition:1s;
 }
+.dance-text span{
+    display:inline-block;
+    transition:.3s;
+}
 
+.dance-text:hover span{
+
+    animation:bounce .5s ease;
+
+}
+
+@keyframes bounce{
+
+    50%{
+        transform:translateY(-12px);
+    }
+
+}
 .show{
     opacity:1;
     transform:translateY(0);
