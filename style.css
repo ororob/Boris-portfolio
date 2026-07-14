@@ -1085,43 +1085,33 @@ a.info-val:hover { color: var(--accent); }
 }
 
 /* ==========================================================================
-   Floating / dancing motion — cards, forms, portrait
-   Idle: slow gentle bob. While the page is being scrolled (up or down):
-   faster, larger wobble, tilting in the direction of travel.
+   Dancing motion — scoped to Projects, Skills, and Contact
+   No idle motion: cards sit still until the page is actively being
+   scrolled (up or down), then wobble and tilt in the scroll direction.
+   Stops and settles the instant scrolling stops.
    ========================================================================== */
 
 :root { --tilt-sign: 1; }
 
-.bento-card,
 .project-card,
 .contact-info,
 .contact-form,
-.skill-card,
-.image-wrapper {
-    animation-name: dance-idle;
-    animation-duration: var(--fdur, 6.4s);
-    animation-delay: var(--fdelay, 0s);
-    animation-timing-function: ease-in-out;
-    animation-iteration-count: infinite;
+.skill-card {
     will-change: transform;
 }
 
-body.is-scrolling .bento-card,
 body.is-scrolling .project-card,
 body.is-scrolling .contact-info,
 body.is-scrolling .contact-form,
-body.is-scrolling .skill-card,
-body.is-scrolling .image-wrapper {
+body.is-scrolling .skill-card {
     animation-name: dance-active;
     animation-duration: 1.5s;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+    animation-delay: var(--fdelay, 0s);
 }
 
 .skill-card.dragging { animation-play-state: paused; }
-
-@keyframes dance-idle {
-    0%, 100% { transform: translateY(0) rotate(0deg); }
-    50% { transform: translateY(-6px) rotate(calc(var(--tilt-sign) * 0.5deg)); }
-}
 
 @keyframes dance-active {
     0%, 100% { transform: translateY(0) rotate(0deg) scale(1); }
@@ -1131,7 +1121,10 @@ body.is-scrolling .image-wrapper {
 }
 
 @media (prefers-reduced-motion: reduce) {
-    .bento-card, .project-card, .contact-info, .contact-form, .skill-card, .image-wrapper {
+    body.is-scrolling .project-card,
+    body.is-scrolling .contact-info,
+    body.is-scrolling .contact-form,
+    body.is-scrolling .skill-card {
         animation: none;
     }
 }
