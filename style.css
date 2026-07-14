@@ -1079,51 +1079,6 @@ a.info-val:hover { color: var(--accent); }
 }
 
 /* ==========================================================================
-   Dancing motion — scoped to Projects, Skills, and Contact
-   No idle motion: cards sit still until the page is actively being
-   scrolled (up or down), then wobble and tilt in the scroll direction.
-   Stops and settles the instant scrolling stops.
-   ========================================================================== */
-
-:root { --tilt-sign: 1; }
-
-.project-card,
-.contact-info,
-.contact-form,
-.skill-card {
-    will-change: transform;
-}
-
-body.is-scrolling .project-card,
-body.is-scrolling .contact-info,
-body.is-scrolling .contact-form,
-body.is-scrolling .skill-card {
-    animation-name: dance-active;
-    animation-duration: 1.5s;
-    animation-timing-function: ease-in-out;
-    animation-iteration-count: infinite;
-    animation-delay: var(--fdelay, 0s);
-}
-
-.skill-card.dragging { animation-play-state: paused; }
-
-@keyframes dance-active {
-    0%, 100% { transform: translateY(0) rotate(0deg) scale(1); }
-    25% { transform: translateY(-11px) rotate(calc(var(--tilt-sign) * -1.6deg)) scale(1.015); }
-    50% { transform: translateY(5px) rotate(calc(var(--tilt-sign) * 1.1deg)) scale(0.99); }
-    75% { transform: translateY(-7px) rotate(calc(var(--tilt-sign) * -0.9deg)) scale(1.01); }
-}
-
-@media (prefers-reduced-motion: reduce) {
-    body.is-scrolling .project-card,
-    body.is-scrolling .contact-info,
-    body.is-scrolling .contact-form,
-    body.is-scrolling .skill-card {
-        animation: none;
-    }
-}
-
-/* ==========================================================================
    Reveal on scroll
    ========================================================================== */
 
