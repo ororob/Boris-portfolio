@@ -107,74 +107,84 @@ document.addEventListener('DOMContentLoaded', () => {
     }, { threshold: 0.4 });
     skillFills.forEach(bar => fillObserver.observe(bar));
 
-    /* ---------- Floating skill cards: tilt + drag ---------- */
+    /* ---------- Floating skill cards: tilt + drag (perf-friendly) ---------- */
     const skillCards = document.querySelectorAll('.skill-card');
+    const desk = document.getElementById('skills-desk');
+    const isDeskLayout = () => window.innerWidth > 900;
+
+    let activeDrag = null; // { card, offsetX, offsetY }
+    let hoverRect = null;  // cached rect for the card currently being hovered
 
     skillCards.forEach(card => {
         const face = card.querySelector('.skill-face');
-        let dragging = false;
-        let offsetX = 0, offsetY = 0;
 
-        // Pointer-based 3D tilt on hover
+        // Cache the rect once when the pointer enters — never during mousemove
+        card.addEventListener('mouseenter', () => {
+            if (activeDrag) return;
+            hoverRect = card.getBoundingClientRect();
+        });
+
         card.addEventListener('mousemove', (e) => {
-            if (dragging) return;
-            const rect = card.getBoundingClientRect();
-            const px = (e.clientX - rect.left) / rect.width - 0.5;
-            const py = (e.clientY - rect.top) / rect.height - 0.5;
+            if (activeDrag || !hoverRect) return;
+            const px = (e.clientX - hoverRect.left) / hoverRect.width - 0.5;
+            const py = (e.clientY - hoverRect.top) / hoverRect.height - 0.5;
             face.style.transform = `rotate(0deg) scale(1.06) rotateX(${py * -14}deg) rotateY(${px * 14}deg)`;
         });
 
         card.addEventListener('mouseleave', () => {
-            if (!dragging) face.style.transform = '';
+            hoverRect = null;
+            if (!activeDrag) face.style.transform = '';
         });
 
-        // Drag to reposition on the desk (desktop only, matches absolute layout)
-        const desk = document.getElementById('skills-desk');
-        const isDeskLayout = () => window.innerWidth > 900;
-
-        const startDrag = (clientX, clientY) => {
+        const beginDrag = (clientX, clientY) => {
             if (!isDeskLayout()) return;
-            dragging = true;
+            const rect = card.getBoundingClientRect();
+            activeDrag = {
+                card,
+                offsetX: clientX - rect.left,
+                offsetY: clientY - rect.top,
+                deskRect: desk.getBoundingClientRect()
+            };
             card.classList.add('dragging');
             card.style.zIndex = 30;
-            const rect = card.getBoundingClientRect();
-            offsetX = clientX - rect.left;
-            offsetY = clientY - rect.top;
         };
 
-        const moveDrag = (clientX, clientY) => {
-            if (!dragging) return;
-            const deskRect = desk.getBoundingClientRect();
-            let x = clientX - deskRect.left - offsetX;
-            let y = clientY - deskRect.top - offsetY;
-            x = Math.max(0, Math.min(x, deskRect.width - card.offsetWidth));
-            y = Math.max(0, Math.min(y, deskRect.height - card.offsetHeight));
-            card.style.left = `${x}px`;
-            card.style.top = `${y}px`;
-        };
-
-        const endDrag = () => {
-            if (!dragging) return;
-            dragging = false;
-            card.classList.remove('dragging');
-            card.style.zIndex = '';
-        };
-
-        card.addEventListener('mousedown', (e) => startDrag(e.clientX, e.clientY));
-        window.addEventListener('mousemove', (e) => moveDrag(e.clientX, e.clientY));
-        window.addEventListener('mouseup', endDrag);
-
+        card.addEventListener('mousedown', (e) => beginDrag(e.clientX, e.clientY));
         card.addEventListener('touchstart', (e) => {
             const t = e.touches[0];
-            startDrag(t.clientX, t.clientY);
+            beginDrag(t.clientX, t.clientY);
         }, { passive: true });
-        window.addEventListener('touchmove', (e) => {
-            if (!dragging) return;
-            const t = e.touches[0];
-            moveDrag(t.clientX, t.clientY);
-        }, { passive: true });
-        window.addEventListener('touchend', endDrag);
     });
+
+    // One shared listener set for all cards, instead of one per card
+    window.addEventListener('mousemove', (e) => {
+        if (!activeDrag) return;
+        dragTo(e.clientX, e.clientY);
+    });
+    window.addEventListener('touchmove', (e) => {
+        if (!activeDrag) return;
+        const t = e.touches[0];
+        dragTo(t.clientX, t.clientY);
+    }, { passive: true });
+    window.addEventListener('mouseup', endDrag);
+    window.addEventListener('touchend', endDrag);
+
+    function dragTo(clientX, clientY) {
+        const { card, offsetX, offsetY, deskRect } = activeDrag;
+        let x = clientX - deskRect.left - offsetX;
+        let y = clientY - deskRect.top - offsetY;
+        x = Math.max(0, Math.min(x, deskRect.width - card.offsetWidth));
+        y = Math.max(0, Math.min(y, deskRect.height - card.offsetHeight));
+        card.style.left = `${x}px`;
+        card.style.top = `${y}px`;
+    }
+
+    function endDrag() {
+        if (!activeDrag) return;
+        activeDrag.card.classList.remove('dragging');
+        activeDrag.card.style.zIndex = '';
+        activeDrag = null;
+    }
 
     /* ---------- Contact form ---------- */
     const form = document.getElementById('contact-form');
