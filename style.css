@@ -521,12 +521,6 @@ section, header, footer { position: relative; z-index: 1; }
     font-family: var(--font-mono);
     font-size: 0.7rem;
     color: var(--text-dim);
-    animation: bob 2.4s ease-in-out infinite;
-}
-
-@keyframes bob {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(6px); }
 }
 
 @media (max-width: 980px) {
