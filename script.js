@@ -176,12 +176,6 @@ document.addEventListener('DOMContentLoaded', () => {
         window.addEventListener('touchend', endDrag);
     });
 
-    /* ---------- Header shrink on scroll ---------- */
-    const header = document.getElementById('header');
-    window.addEventListener('scroll', () => {
-        header.style.boxShadow = window.scrollY > 20 ? '0 10px 30px -20px rgba(0,0,0,0.6)' : 'none';
-    });
-
     /* ---------- Contact form ---------- */
     const form = document.getElementById('contact-form');
     const note = document.getElementById('form-note');
