@@ -1,231 +1,199 @@
-// js/script.js
-// MOBILE MENU
-
-const menuToggle = document.getElementById("menu-toggle");
-const navbar = document.getElementById("navbar");
-const closeMenu = document.getElementById("close-menu");
-const navLinks = document.querySelectorAll(".navbar a");
-
-// OPEN MENU
-menuToggle.addEventListener("click", () => {
-    navbar.classList.add("show");
-});
-
-// CLOSE MENU
-closeMenu.addEventListener("click", () => {
-    navbar.classList.remove("show");
-});
-
-// CLOSE ON LINK CLICK (important UX)
-navLinks.forEach(link => {
-    link.addEventListener("click", () => {
-        navbar.classList.remove("show");
+/ ==========================================================================
+// Endum Boris — Portfolio interactions
+// ==========================================================================
+ 
+document.addEventListener('DOMContentLoaded', () => {
+ 
+    /* ---------- Mobile navigation ---------- */
+    const menuToggle = document.getElementById('menu-toggle');
+    const closeMenu = document.getElementById('close-menu');
+    const navbar = document.getElementById('navbar');
+ 
+    if (menuToggle && navbar) {
+        menuToggle.addEventListener('click', () => navbar.classList.add('active'));
+    }
+    if (closeMenu && navbar) {
+        closeMenu.addEventListener('click', () => navbar.classList.remove('active'));
+    }
+    navbar?.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => navbar.classList.remove('active'));
     });
-});
-const observer = new IntersectionObserver((entries)=>{
-
-    entries.forEach(entry=>{
-
-        if(entry.isIntersecting){
-            entry.target.classList.add('show');
-        }
-
-    });
-
-},{
-    threshold:0.15
-});
-
-document.querySelectorAll(
-'.about-card, .stat-card, .project-box, .skill-box, .home-content, .home-img, .contact form'
-).forEach(el=>{
-
-    observer.observe(el);
-
-});
-const cards = document.querySelectorAll(
-'.project-box,.home-img'
-);
-
-cards.forEach(card=>{
-
-    card.addEventListener('mousemove',(e)=>{
-
-        const x = e.offsetX;
-        const y = e.offsetY;
-
-        const rotateY =
-        (x - card.clientWidth/2)/20;
-
-        const rotateX =
-        -(y - card.clientHeight/2)/20;
-
-        card.style.transform =
-        `perspective(1000px)
-        rotateY(${rotateY}deg)
-        rotateX(${rotateX}deg)`;
-
-    });
-
-    card.addEventListener('mouseleave',()=>{
-
-        card.style.transform =
-        'perspective(1000px) rotateY(0) rotateX(0)';
-
-    });
-
-});
-document.querySelectorAll('.dance-text').forEach(text=>{
-
-    text.innerHTML =
-    text.textContent
-    .split('')
-    .map(letter=>
-        `<span>${letter}</span>`
-    ).join('');
-
-});
-const skillSection =
-document.querySelector('.skills');
-
-const progressBars =
-document.querySelectorAll('.progress');
-
-window.addEventListener('scroll',()=>{
-
-    const sectionTop =
-    skillSection.offsetTop - 400;
-
-    if(window.scrollY > sectionTop){
-
-        progressBars.forEach(bar=>{
-
-            const width =
-            bar.classList.contains('html') ? '95%' :
-            bar.classList.contains('css') ? '90%' :
-            bar.classList.contains('js') ? '85%' :
-            bar.classList.contains('react') ? '65%' :
-            bar.classList.contains('php') ? '75%' :
-            bar.classList.contains('mysql') ? '85%' :
-            bar.classList.contains('github') ? '90%' :
-            '95%';
-
-            bar.style.width = width;
-
+ 
+    /* ---------- Active nav link on scroll ---------- */
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.navbar a');
+ 
+    const spyObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const id = entry.target.getAttribute('id');
+                navLinks.forEach(link => {
+                    link.classList.toggle('active', link.getAttribute('href') === `#${id}`);
+                });
+            }
         });
-
+    }, { rootMargin: '-45% 0px -45% 0px' });
+ 
+    sections.forEach(sec => spyObserver.observe(sec));
+ 
+    /* ---------- Typed.js role text ---------- */
+    if (window.Typed) {
+        new Typed('.multiple-text', {
+            strings: [
+                'Web Applications',
+                'Responsive Interfaces',
+                'Database-Driven Systems',
+                'Full-Stack Solutions'
+            ],
+            typeSpeed: 55,
+            backSpeed: 30,
+            backDelay: 1500,
+            loop: true
+        });
     }
-
-});
-// TYPING EFFECT
-
-const typed = new Typed('.multiple-text', {
-
-    strings: [
-        'Frontend Developer',
-        'Web Designer',
-        'JavaScript Developer',
-        'React Developer'
-    ],
-
-    typeSpeed: 100,
-    backSpeed: 100,
-    backDelay: 1000,
-    loop: true
-
-});
-const counters = document.querySelectorAll('.counter');
-
-counters.forEach(counter => {
-
-    const updateCounter = () => {
-
-        const target = +counter.getAttribute('data-target');
-        const count = +counter.innerText;
-
-        const increment = target / 100;
-
-        if(count < target){
-
-            counter.innerText = Math.ceil(count + increment);
-
-            setTimeout(updateCounter, 20);
-
-        }else{
-
-            counter.innerText = target;
-
-        }
-
-    }
-
-    updateCounter();
-
-});
-// CONTACT FORM VALIDATION
-const form = document.getElementById("contact-form");
-const successMessage = document.getElementById("successMessage");
-
-const inputs = form.querySelectorAll("input, textarea");
-
-// VALIDATION FUNCTION
-function validateInput(input){
-
-    const parent = input.parentElement;
-
-    if(input.value.trim() === ""){
-        parent.classList.add("error");
-        parent.classList.remove("success");
-        return false;
-    }else{
-        parent.classList.remove("error");
-        parent.classList.add("success");
-        return true;
-    }
-
-}
-
-// REAL-TIME VALIDATION
-inputs.forEach(input=>{
-
-    input.addEventListener("input", ()=> {
-        validateInput(input);
+ 
+    /* ---------- Scroll reveal ---------- */
+    const revealTargets = document.querySelectorAll(
+        '.bento-card, .skill-card, .project-card, .contact-info, .contact-form'
+    );
+    revealTargets.forEach(el => el.classList.add('reveal'));
+ 
+    const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry, i) => {
+            if (entry.isIntersecting) {
+                setTimeout(() => entry.target.classList.add('in-view'), i % 6 * 60);
+                revealObserver.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.15 });
+ 
+    revealTargets.forEach(el => revealObserver.observe(el));
+ 
+    /* ---------- Animated counters ---------- */
+    const counters = document.querySelectorAll('.counter');
+ 
+    const counterObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (!entry.isIntersecting) return;
+            const el = entry.target;
+            const target = parseInt(el.dataset.target, 10) || 0;
+            const duration = 1200;
+            const start = performance.now();
+ 
+            const tick = (now) => {
+                const progress = Math.min((now - start) / duration, 1);
+                const eased = 1 - Math.pow(1 - progress, 3);
+                el.textContent = Math.round(eased * target);
+                if (progress < 1) requestAnimationFrame(tick);
+                else el.textContent = target;
+            };
+            requestAnimationFrame(tick);
+            counterObserver.unobserve(el);
+        });
+    }, { threshold: 0.6 });
+ 
+    counters.forEach(el => counterObserver.observe(el));
+ 
+    /* ---------- Skill meter fill on view ---------- */
+    const skillFills = document.querySelectorAll('.skill-fill');
+    const fillObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const bar = entry.target;
+                bar.style.width = `${bar.dataset.level}%`;
+                fillObserver.unobserve(bar);
+            }
+        });
+    }, { threshold: 0.4 });
+    skillFills.forEach(bar => fillObserver.observe(bar));
+ 
+    /* ---------- Floating skill cards: tilt + drag ---------- */
+    const skillCards = document.querySelectorAll('.skill-card');
+ 
+    skillCards.forEach(card => {
+        const face = card.querySelector('.skill-face');
+        let dragging = false;
+        let offsetX = 0, offsetY = 0;
+ 
+        // Pointer-based 3D tilt on hover
+        card.addEventListener('mousemove', (e) => {
+            if (dragging) return;
+            const rect = card.getBoundingClientRect();
+            const px = (e.clientX - rect.left) / rect.width - 0.5;
+            const py = (e.clientY - rect.top) / rect.height - 0.5;
+            face.style.transform = `rotate(0deg) scale(1.06) rotateX(${py * -14}deg) rotateY(${px * 14}deg)`;
+        });
+ 
+        card.addEventListener('mouseleave', () => {
+            if (!dragging) face.style.transform = '';
+        });
+ 
+        // Drag to reposition on the desk (desktop only, matches absolute layout)
+        const desk = document.getElementById('skills-desk');
+        const isDeskLayout = () => window.innerWidth > 900;
+ 
+        const startDrag = (clientX, clientY) => {
+            if (!isDeskLayout()) return;
+            dragging = true;
+            card.classList.add('dragging');
+            card.style.zIndex = 30;
+            const rect = card.getBoundingClientRect();
+            offsetX = clientX - rect.left;
+            offsetY = clientY - rect.top;
+        };
+ 
+        const moveDrag = (clientX, clientY) => {
+            if (!dragging) return;
+            const deskRect = desk.getBoundingClientRect();
+            let x = clientX - deskRect.left - offsetX;
+            let y = clientY - deskRect.top - offsetY;
+            x = Math.max(0, Math.min(x, deskRect.width - card.offsetWidth));
+            y = Math.max(0, Math.min(y, deskRect.height - card.offsetHeight));
+            card.style.left = `${x}px`;
+            card.style.top = `${y}px`;
+        };
+ 
+        const endDrag = () => {
+            if (!dragging) return;
+            dragging = false;
+            card.classList.remove('dragging');
+            card.style.zIndex = '';
+        };
+ 
+        card.addEventListener('mousedown', (e) => startDrag(e.clientX, e.clientY));
+        window.addEventListener('mousemove', (e) => moveDrag(e.clientX, e.clientY));
+        window.addEventListener('mouseup', endDrag);
+ 
+        card.addEventListener('touchstart', (e) => {
+            const t = e.touches[0];
+            startDrag(t.clientX, t.clientY);
+        }, { passive: true });
+        window.addEventListener('touchmove', (e) => {
+            if (!dragging) return;
+            const t = e.touches[0];
+            moveDrag(t.clientX, t.clientY);
+        }, { passive: true });
+        window.addEventListener('touchend', endDrag);
     });
-
-});
-
-// FORM SUBMIT
-form.addEventListener("submit", function(e){
-
-    e.preventDefault();
-
-    let isValid = true;
-
-    inputs.forEach(input=>{
-        if(!validateInput(input)){
-            isValid = false;
-        }
+ 
+    /* ---------- Header shrink on scroll ---------- */
+    const header = document.getElementById('header');
+    let lastY = window.scrollY;
+    window.addEventListener('scroll', () => {
+        const y = window.scrollY;
+        header.style.boxShadow = y > 20 ? '0 10px 30px -20px rgba(0,0,0,0.6)' : 'none';
+        lastY = y;
     });
-
-    if(isValid){
-
-        // SHOW SUCCESS MESSAGE
-        successMessage.classList.add("show");
-
-        // RESET FORM
+ 
+    /* ---------- Contact form ---------- */
+    const form = document.getElementById('contact-form');
+    const note = document.getElementById('form-note');
+ 
+    form?.addEventListener('submit', (e) => {
+        e.preventDefault();
+        note.textContent = '> Message received. I\u2019ll reply within 24 hours.';
         form.reset();
-
-        // REMOVE SUCCESS BORDER STYLES
-        document.querySelectorAll(".input-box")
-        .forEach(box=>{
-            box.classList.remove("success");
-        });
-
-        // HIDE AFTER 3 SECONDS
-        setTimeout(()=>{
-            successMessage.classList.remove("show");
-        },3000);
-
-    }
-
+        setTimeout(() => { note.textContent = ''; }, 5000);
+    });
+ 
 });
