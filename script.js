@@ -184,7 +184,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     /* ---------- Floating / dancing cards: stagger + scroll reactivity ---------- */
     const danceEls = document.querySelectorAll(
-        '.bento-card, .project-card, .contact-info, .contact-form, .skill-card, .image-wrapper'
+        '.project-card, .contact-info, .contact-form, .skill-card'
     );
 
     // Give each element its own rhythm so the desk feels alive, not synchronized
