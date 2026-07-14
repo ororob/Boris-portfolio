@@ -182,33 +182,6 @@ document.addEventListener('DOMContentLoaded', () => {
         header.style.boxShadow = window.scrollY > 20 ? '0 10px 30px -20px rgba(0,0,0,0.6)' : 'none';
     });
 
-    /* ---------- Floating / dancing cards: stagger + scroll reactivity ---------- */
-    const danceEls = document.querySelectorAll(
-        '.project-card, .contact-info, .contact-form, .skill-card'
-    );
-
-    // Give each element its own rhythm so the desk feels alive, not synchronized
-    danceEls.forEach((el, i) => {
-        el.style.setProperty('--fdelay', `${(i % 9) * 0.28}s`);
-        el.style.setProperty('--fdur', `${5.6 + (i % 6) * 0.5}s`);
-    });
-
-    let lastScrollY = window.scrollY;
-    let scrollStopTimer = null;
-
-    window.addEventListener('scroll', () => {
-        const currentY = window.scrollY;
-        const direction = currentY > lastScrollY ? 1 : -1;
-        document.documentElement.style.setProperty('--tilt-sign', direction);
-        document.body.classList.add('is-scrolling');
-        lastScrollY = currentY;
-
-        clearTimeout(scrollStopTimer);
-        scrollStopTimer = setTimeout(() => {
-            document.body.classList.remove('is-scrolling');
-        }, 350);
-    }, { passive: true });
-
     /* ---------- Contact form ---------- */
     const form = document.getElementById('contact-form');
     const note = document.getElementById('form-note');
