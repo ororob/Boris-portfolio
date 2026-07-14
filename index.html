@@ -5,26 +5,26 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Endum Boris — Software Engineer</title>
- 
+
     <!-- CSS -->
     <link rel="stylesheet" href="style.css">
- 
+
     <!-- Font Awesome -->
     <link
         rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
     />
- 
+
     <!-- Fonts: Fraunces (display) / Inter (body) / JetBrains Mono (utility) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
- 
+
     <!-- Typed JS -->
     <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
 </head>
 <body>
- 
+
     <!-- backdrop: blueprint grid + scanline -->
     <div class="backdrop" aria-hidden="true">
         <div class="grid-field"></div>
@@ -32,127 +32,128 @@
         <div class="glow glow-a"></div>
         <div class="glow glow-b"></div>
     </div>
- 
+
     <!-- HEADER -->
     <header class="header" id="header">
- 
+
         <a href="#home" class="logo">
             <span class="logo-mark">EB</span>
             <span class="logo-text">Endum <span>Boris</span></span>
         </a>
- 
+
         <!-- MENU ICON -->
         <div class="menu-toggle" id="menu-toggle">
             <i class="fas fa-bars"></i>
         </div>
- 
+
         <!-- NAV -->
         <nav class="navbar" id="navbar">
- 
+
             <span class="nav-index">01</span><a href="#home" class="active">Home</a>
             <span class="nav-index">02</span><a href="#about">About</a>
             <span class="nav-index">03</span><a href="#skills">Skills</a>
             <span class="nav-index">04</span><a href="#projects">Projects</a>
             <span class="nav-index">05</span><a href="#contact">Contact</a>
- 
+
             <!-- close button (mobile) -->
             <div class="close-menu" id="close-menu">
                 <i class="fas fa-times"></i>
             </div>
- 
+
         </nav>
- 
+
     </header>
- 
+
     <!-- HERO SECTION -->
     <section class="home" id="home">
- 
+
         <div class="home-content">
- 
+
             <div class="status-line">
                 <span class="status-dot"></span>
                 <span>STATUS &mdash; AVAILABLE FOR FREELANCE</span>
             </div>
- 
+
             <h3 class="eyebrow">Hello, it's me</h3>
- 
+
             <h1 class="hero-name">Endum Boris</h1>
- 
+
             <h3 class="hero-role">
                 Building <span class="multiple-text"></span>
             </h3>
- 
+
             <p>
                 Software Engineering student and full-stack developer based in
                 Douala, Cameroon. I design and ship responsive web applications
                 and database-driven systems that solve real operational problems.
             </p>
- 
+
             <div class="social-media">
- 
+
                 <a href="https://www.facebook.com/ronaldo.alviero.359" aria-label="Facebook">
                     <i class="fab fa-facebook-f"></i>
                 </a>
- 
+
                 <a href="https://github.com/ororob" aria-label="GitHub">
                     <i class="fab fa-github"></i>
                 </a>
- 
+
                 <a href="https://cm.linkedin.com/in/endum-boris-7b37aa2bb" aria-label="LinkedIn">
                     <i class="fab fa-linkedin-in"></i>
                 </a>
- 
+
                 <a href="https://wa.me/237678603325" target="_blank" aria-label="WhatsApp">
                     <i class="fab fa-whatsapp"></i>
                 </a>
- 
+
             </div>
- 
+
             <div class="hero-buttons">
- 
+
                 <a href="boris cv.pdf" class="btn">
                     <span>Download CV</span>
                     <i class="fas fa-arrow-down"></i>
                 </a>
- 
+
                 <a href="#projects" class="btn btn-outline">
                     View Projects
                 </a>
- 
+
             </div>
- 
+
         </div>
- 
+
         <div class="home-img">
- 
+
             <div class="image-wrapper">
-                <div class="frame-corner tl"></div>
-                <div class="frame-corner br"></div>
-                <img src="./ororo.jpg" alt="Endum Boris">
+                <div class="image-ring"></div>
+                <div class="image-circle">
+                    <img src="./ororo.jpg" alt="Endum Boris">
+                </div>
                 <div class="coord-tag">LAT 4.05&deg;N &middot; LON 9.70&deg;E</div>
             </div>
- 
+
         </div>
- 
+
         <div class="scroll-cue">
             <span>Scroll</span>
             <i class="fas fa-chevron-down"></i>
         </div>
- 
+
     </section>
- 
+
     <!-- ABOUT SECTION -->
     <section class="about" id="about">
- 
+
         <div class="section-head">
             <span class="section-tag"><span class="tag-index">02</span> About Me</span>
             <h2 class="section-title">
                 Building practical software<br>that delivers results
             </h2>
         </div>
- 
+
         <div class="bento-grid">
- 
+
             <!-- bio: large tile -->
             <div class="bento-card bento-bio">
                 <p class="about-intro">
@@ -171,42 +172,42 @@
                     solutions that are both functional and visually considered.
                 </p>
             </div>
- 
+
             <!-- focus card -->
             <div class="bento-card bento-focus">
                 <i class="fas fa-code"></i>
                 <h3>Web Development</h3>
                 <p>Modern websites and web apps with clean code and responsive layouts.</p>
             </div>
- 
+
             <div class="bento-card bento-focus">
                 <i class="fas fa-database"></i>
                 <h3>Backend Systems</h3>
                 <p>Secure, database-driven applications using PHP and MySQL.</p>
             </div>
- 
+
             <!-- stats -->
             <div class="bento-card bento-stat">
                 <h3 class="counter" data-target="3">0</h3>
                 <span>Projects Completed</span>
             </div>
- 
+
             <div class="bento-card bento-stat">
                 <h3 class="counter" data-target="3">0</h3>
                 <span>Years of Learning</span>
             </div>
- 
+
             <div class="bento-card bento-stat">
                 <h3 class="counter" data-target="6">0</h3>
                 <span>Technologies Used</span>
             </div>
- 
+
             <div class="bento-card bento-focus">
                 <i class="fas fa-lightbulb"></i>
                 <h3>Problem Solving</h3>
                 <p>Software that improves real business processes and user experience.</p>
             </div>
- 
+
             <!-- tech stack strip -->
             <div class="bento-card bento-stack">
                 <span class="stack-label">Toolkit</span>
@@ -219,32 +220,32 @@
                     <span>React</span>
                 </div>
             </div>
- 
+
             <!-- commitment -->
             <div class="bento-card bento-commit">
                 <h3>100%</h3>
                 <span>Commitment</span>
             </div>
- 
+
         </div>
- 
+
         <div class="about-buttons">
- 
+
             <a href="#projects" class="btn">
                 Explore My Work
             </a>
- 
+
             <a href="#contact" class="btn-outline">
                 Let's Connect
             </a>
- 
+
         </div>
- 
+
     </section>
- 
+
     <!-- SKILLS SECTION -->
     <section class="skills" id="skills">
- 
+
         <div class="section-head">
             <span class="section-tag"><span class="tag-index">03</span> My Expertise</span>
             <h2 class="section-title">Technical <span>Skills</span></h2>
@@ -253,9 +254,9 @@
                 to build responsive, scalable, and modern web applications.
             </p>
         </div>
- 
+
         <div class="skills-desk" id="skills-desk">
- 
+
             <div class="skill-card" data-skill="html" style="--rot:-6deg; --x:2%; --y:6%;">
                 <div class="skill-face">
                     <i class="fab fa-html5"></i>
@@ -264,7 +265,7 @@
                     <span class="skill-pct">95%</span>
                 </div>
             </div>
- 
+
             <div class="skill-card" data-skill="css" style="--rot:4deg; --x:20%; --y:0%;">
                 <div class="skill-face">
                     <i class="fab fa-css3-alt"></i>
@@ -273,7 +274,7 @@
                     <span class="skill-pct">90%</span>
                 </div>
             </div>
- 
+
             <div class="skill-card" data-skill="js" style="--rot:-3deg; --x:39%; --y:10%;">
                 <div class="skill-face">
                     <i class="fab fa-js"></i>
@@ -282,7 +283,7 @@
                     <span class="skill-pct">85%</span>
                 </div>
             </div>
- 
+
             <div class="skill-card" data-skill="react" style="--rot:7deg; --x:58%; --y:2%;">
                 <div class="skill-face">
                     <i class="fab fa-react"></i>
@@ -291,7 +292,7 @@
                     <span class="skill-pct">75%</span>
                 </div>
             </div>
- 
+
             <div class="skill-card" data-skill="php" style="--rot:-5deg; --x:76%; --y:8%;">
                 <div class="skill-face">
                     <i class="fab fa-php"></i>
@@ -300,7 +301,7 @@
                     <span class="skill-pct">85%</span>
                 </div>
             </div>
- 
+
             <div class="skill-card" data-skill="mysql" style="--rot:5deg; --x:8%; --y:52%;">
                 <div class="skill-face">
                     <i class="fas fa-database"></i>
@@ -309,7 +310,7 @@
                     <span class="skill-pct">80%</span>
                 </div>
             </div>
- 
+
             <div class="skill-card" data-skill="github" style="--rot:-7deg; --x:29%; --y:58%;">
                 <div class="skill-face">
                     <i class="fab fa-github"></i>
@@ -318,7 +319,7 @@
                     <span class="skill-pct">85%</span>
                 </div>
             </div>
- 
+
             <div class="skill-card" data-skill="responsive" style="--rot:3deg; --x:50%; --y:50%;">
                 <div class="skill-face">
                     <i class="fas fa-mobile-alt"></i>
@@ -327,14 +328,14 @@
                     <span class="skill-pct">95%</span>
                 </div>
             </div>
- 
+
         </div>
- 
+
     </section>
- 
+
     <!-- PROJECTS SECTION -->
     <section class="projects" id="projects">
- 
+
         <div class="section-head">
             <span class="section-tag"><span class="tag-index">04</span> My Work</span>
             <h2 class="section-title">Featured <span>Projects</span></h2>
@@ -343,12 +344,12 @@
                 and full-stack application development.
             </p>
         </div>
- 
+
         <div class="projects-container">
- 
+
             <!-- PROJECT 1 -->
             <article class="project-card">
- 
+
                 <div class="project-media" data-scene="aquarium">
                     <div class="browser-chrome">
                         <span></span><span></span><span></span>
@@ -358,44 +359,44 @@
                         <i class="fas fa-fish"></i>
                     </div>
                 </div>
- 
+
                 <div class="project-content">
- 
+
                     <span class="project-index">Project 01</span>
- 
+
                     <h3>Aquarium Fish Website</h3>
- 
+
                     <p>
                         A modern aquarium platform showcasing fish species, care
                         guides, and customer reviews, with a responsive interface
                         built to support fish-selling services.
                     </p>
- 
+
                     <div class="tech-stack">
                         <span>HTML5</span>
                         <span>CSS3</span>
                         <span>JavaScript</span>
                     </div>
- 
+
                     <div class="project-features">
                         <div><i class="fas fa-check"></i> Responsive Design</div>
                         <div><i class="fas fa-check"></i> Interactive UI</div>
                         <div><i class="fas fa-check"></i> Product Showcase</div>
                     </div>
- 
+
                     <div class="project-buttons">
                         <a href="https://acq-nu.vercel.app/" target="_blank" class="project-btn">
                             Live Demo <i class="fas fa-arrow-up-right-from-square"></i>
                         </a>
                     </div>
- 
+
                 </div>
- 
+
             </article>
- 
+
             <!-- PROJECT 2 -->
             <article class="project-card">
- 
+
                 <div class="project-media" data-scene="travel">
                     <div class="browser-chrome">
                         <span></span><span></span><span></span>
@@ -405,44 +406,44 @@
                         <i class="fas fa-globe"></i>
                     </div>
                 </div>
- 
+
                 <div class="project-content">
- 
+
                     <span class="project-index">Project 02</span>
- 
+
                     <h3>Travel &amp; Tourism Website</h3>
- 
+
                     <p>
                         ExploreWorld helps users discover destinations, plan
                         journeys, and access travel resources through a clean
                         and user-friendly experience.
                     </p>
- 
+
                     <div class="tech-stack">
                         <span>HTML5</span>
                         <span>CSS3</span>
                         <span>JavaScript</span>
                     </div>
- 
+
                     <div class="project-features">
                         <div><i class="fas fa-check"></i> Destination Explorer</div>
                         <div><i class="fas fa-check"></i> Responsive Layout</div>
                         <div><i class="fas fa-check"></i> Modern UI Design</div>
                     </div>
- 
+
                     <div class="project-buttons">
                         <a href="https://acq-wuts.vercel.app/" target="_blank" class="project-btn">
                             Live Demo <i class="fas fa-arrow-up-right-from-square"></i>
                         </a>
                     </div>
- 
+
                 </div>
- 
+
             </article>
- 
+
             <!-- PROJECT 3 -->
             <article class="project-card">
- 
+
                 <div class="project-media" data-scene="inventory">
                     <div class="browser-chrome">
                         <span></span><span></span><span></span>
@@ -452,42 +453,42 @@
                         <i class="fas fa-chart-line"></i>
                     </div>
                 </div>
- 
+
                 <div class="project-content">
- 
+
                     <span class="project-index">Project 03</span>
- 
+
                     <h3>Smart Inventory &amp; Sales Management System</h3>
- 
+
                     <p>
                         A business management platform to track inventory,
                         monitor sales, manage products, generate reports, and
                         improve operational efficiency.
                     </p>
- 
+
                     <div class="tech-stack">
                         <span>PHP</span>
                         <span>MySQL</span>
                         <span>JavaScript</span>
                     </div>
- 
+
                     <div class="project-features">
                         <div><i class="fas fa-check"></i> Inventory Tracking</div>
                         <div><i class="fas fa-check"></i> Sales Reports</div>
                         <div><i class="fas fa-check"></i> Admin Dashboard</div>
                     </div>
- 
+
                 </div>
- 
+
             </article>
- 
+
         </div>
- 
+
     </section>
- 
+
     <!-- CONTACT SECTION -->
     <section class="contact" id="contact">
- 
+
         <div class="section-head">
             <span class="section-tag"><span class="tag-index">05</span> Get In Touch</span>
             <h2 class="section-title">Let's Work <span>Together</span></h2>
@@ -496,17 +497,17 @@
                 Send a message and I'll respond as soon as possible.
             </p>
         </div>
- 
+
         <div class="contact-content">
- 
+
             <!-- LEFT: console readout -->
             <div class="contact-info">
- 
+
                 <div class="console-header">
                     <span class="console-dot"></span>
                     <span>contact.log</span>
                 </div>
- 
+
                 <div class="info-row">
                     <i class="fas fa-envelope"></i>
                     <div>
@@ -514,7 +515,7 @@
                         <a href="mailto:endumboris5@gmail.com" class="info-val">endumboris5@gmail.com</a>
                     </div>
                 </div>
- 
+
                 <div class="info-row">
                     <i class="fas fa-phone"></i>
                     <div>
@@ -522,7 +523,7 @@
                         <a href="tel:+237678603325" class="info-val">+237 678 603 325</a>
                     </div>
                 </div>
- 
+
                 <div class="info-row">
                     <i class="fas fa-map-marker-alt"></i>
                     <div>
@@ -530,129 +531,129 @@
                         <span class="info-val">Douala, Cameroon</span>
                     </div>
                 </div>
- 
+
                 <div class="social-links">
                     <a href="https://github.com/ororob" aria-label="GitHub"><i class="fab fa-github"></i></a>
                     <a href="https://cm.linkedin.com/in/endum-boris-7b37aa2bb" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
                     <a href="https://wa.me/237678603325" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
                 </div>
- 
+
             </div>
- 
+
             <!-- FORM -->
             <form id="contact-form" class="contact-form">
- 
+
                 <div class="input-row">
- 
+
                     <div class="input-box">
                         <input type="text" id="name" required>
                         <label>Full Name</label>
                     </div>
- 
+
                     <div class="input-box">
                         <input type="email" id="email" required>
                         <label>Email Address</label>
                     </div>
- 
+
                 </div>
- 
+
                 <div class="input-row">
- 
+
                     <div class="input-box">
                         <input type="tel" id="phone" required>
                         <label>Phone Number</label>
                     </div>
- 
+
                     <div class="input-box">
                         <input type="text" id="subject" required>
                         <label>Subject</label>
                     </div>
- 
+
                 </div>
- 
+
                 <div class="input-box textarea-box">
                     <textarea id="message" required></textarea>
                     <label>Your Message</label>
                 </div>
- 
+
                 <button type="submit" class="btn">
                     <span>Send Message</span>
                     <i class="fas fa-paper-plane"></i>
                 </button>
- 
+
                 <p class="form-note" id="form-note"></p>
- 
+
             </form>
- 
+
         </div>
- 
+
     </section>
- 
+
     <!-- FOOTER -->
     <footer class="footer">
- 
+
         <div class="footer-container">
- 
+
             <!-- BRAND -->
             <div class="footer-brand">
- 
+
                 <h2>Endum Boris</h2>
- 
+
                 <p>
                     Software Engineer focused on building modern,
                     responsive and scalable web applications.
                 </p>
- 
+
             </div>
- 
+
             <!-- LINKS -->
             <div class="footer-links">
- 
+
                 <h3>Quick Links</h3>
- 
+
                 <a href="#home">Home</a>
                 <a href="#about">About</a>
                 <a href="#skills">Skills</a>
                 <a href="#projects">Projects</a>
                 <a href="#contact">Contact</a>
- 
+
             </div>
- 
+
             <!-- SOCIAL -->
             <div class="footer-social">
- 
+
                 <h3>Connect</h3>
- 
+
                 <div class="social-icons">
- 
+
                     <a href="https://github.com/ororob"><i class="fab fa-github"></i></a>
                     <a href="https://cm.linkedin.com/in/endum-boris-7b37aa2bb"><i class="fab fa-linkedin"></i></a>
                     <a href="https://wa.me/237678603325"><i class="fab fa-whatsapp"></i></a>
                     <a href="https://www.facebook.com/ronaldo.alviero.359"><i class="fab fa-facebook"></i></a>
- 
+
                 </div>
- 
+
             </div>
- 
+
         </div>
- 
+
         <!-- BOTTOM -->
         <div class="footer-bottom">
- 
+
             <p>
                 &copy; 2026 Endum Boris. All rights reserved.
             </p>
- 
+
             <a href="#home" class="scroll-top" aria-label="Back to top">
                 <i class="fas fa-arrow-up"></i>
             </a>
- 
+
         </div>
- 
+
     </footer>
- 
+
     <!-- JS -->
     <script src="script.js"></script>
- 
+
 </body>
 </html>
