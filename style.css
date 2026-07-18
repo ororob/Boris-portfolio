@@ -236,8 +236,7 @@ section, header, footer { position: relative; z-index: 1; }
    ========================================================================== */
 
 .header {
-    position: relative;
-    z-index: 50;
+    position: static;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -717,7 +716,12 @@ section, header, footer { position: relative; z-index: 1; }
         grid-template-columns: repeat(2, 1fr);
         gap: 18px;
     }
-    .skill-card { position: static; width: auto; }
+    .skill-card {
+        position: static;
+        width: auto;
+        touch-action: auto;
+        cursor: default;
+    }
     .skill-face { transform: none !important; }
 }
 
@@ -1090,3 +1094,43 @@ a.info-val:hover { color: var(--accent); }
     transition: opacity 0.7s var(--ease), transform 0.7s var(--ease);
 }
 .reveal.in-view { opacity: 1; transform: translateY(0); }
+
+/* ==========================================================================
+   Form "dance" on scroll
+   ========================================================================== */
+
+.contact-form .input-box,
+.contact-form button,
+.contact-form .form-note {
+    transition: transform 0.15s ease;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    .contact-form.dancing-down .input-box,
+    .contact-form.dancing-down button {
+        animation: field-dance-down 0.6s ease;
+        animation-delay: var(--dance-delay, 0s);
+    }
+
+    .contact-form.dancing-up .input-box,
+    .contact-form.dancing-up button {
+        animation: field-dance-up 0.6s ease;
+        animation-delay: var(--dance-delay, 0s);
+    }
+}
+
+@keyframes field-dance-down {
+    0%   { transform: translateY(0)    rotate(0deg); }
+    25%  { transform: translateY(8px)  rotate(-2deg); }
+    50%  { transform: translateY(-6px) rotate(2deg); }
+    75%  { transform: translateY(4px)  rotate(-1deg); }
+    100% { transform: translateY(0)    rotate(0deg); }
+}
+
+@keyframes field-dance-up {
+    0%   { transform: translateY(0)    rotate(0deg); }
+    25%  { transform: translateY(-8px) rotate(2deg); }
+    50%  { transform: translateY(6px)  rotate(-2deg); }
+    75%  { transform: translateY(-4px) rotate(1deg); }
+    100% { transform: translateY(0)    rotate(0deg); }
+}
