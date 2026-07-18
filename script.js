@@ -4,6 +4,16 @@
 
 document.addEventListener('DOMContentLoaded', () => {
 
+    /* ---------- Fixed header height compensation ---------- */
+    const headerEl = document.querySelector('.header');
+    const setHeaderHeightVar = () => {
+        if (headerEl) {
+            document.documentElement.style.setProperty('--header-h', `${headerEl.offsetHeight}px`);
+        }
+    };
+    setHeaderHeightVar();
+    window.addEventListener('resize', setHeaderHeightVar);
+
     /* ---------- Mobile navigation ---------- */
     const menuToggle = document.getElementById('menu-toggle');
     const closeMenu = document.getElementById('close-menu');
