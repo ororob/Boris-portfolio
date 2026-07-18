@@ -207,34 +207,4 @@ document.addEventListener('DOMContentLoaded', () => {
         setTimeout(() => { note.textContent = ''; }, 5000);
     });
 
-    /* ---------- Form "dance" on scroll ---------- */
-    if (form) {
-        const danceFields = form.querySelectorAll('.input-box, button, .form-note');
-        danceFields.forEach((el, i) => {
-            el.style.setProperty('--dance-delay', (i * 0.05) + 's');
-        });
-
-        let lastY = window.scrollY;
-        let ticking = false;
-
-        const triggerDance = (direction) => {
-            form.classList.remove('dancing-up', 'dancing-down');
-            void form.offsetWidth; // force reflow so the animation restarts every time
-            form.classList.add(direction === 'down' ? 'dancing-down' : 'dancing-up');
-        };
-
-        window.addEventListener('scroll', () => {
-            if (ticking) return;
-            ticking = true;
-            requestAnimationFrame(() => {
-                const y = window.scrollY;
-                if (Math.abs(y - lastY) > 15) {
-                    triggerDance(y > lastY ? 'down' : 'up');
-                    lastY = y;
-                }
-                ticking = false;
-            });
-        });
-    }
-
 });
