@@ -47,6 +47,7 @@ body {
     line-height: 1.6;
     overflow-x: hidden;
     position: relative;
+    padding-top: var(--header-h, 84px);
 }
 
 a { text-decoration: none; color: inherit; }
@@ -236,7 +237,11 @@ section, header, footer { position: relative; z-index: 1; }
    ========================================================================== */
 
 .header {
-    position: static;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 50;
     display: flex;
     align-items: center;
     justify-content: space-between;
