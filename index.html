@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="description" content="Endum Boris — Software Engineer &amp; Full-Stack Web Developer based in Douala, Cameroon. Building responsive web applications and database-driven systems." />
     <title>Endum Boris — Software Engineer</title>
 
     <!-- CSS -->
@@ -25,12 +26,19 @@
 </head>
 <body>
 
+    <!-- SCROLL PROGRESS -->
+    <div class="scroll-progress" aria-hidden="true"><span id="scroll-progress-bar"></span></div>
+
+    <!-- CURSOR GLOW (desktop only, decorative) -->
+    <div class="cursor-glow" id="cursor-glow" aria-hidden="true"></div>
+
     <!-- backdrop: blueprint grid + scanline -->
     <div class="backdrop" aria-hidden="true">
         <div class="grid-field"></div>
         <div class="scanline"></div>
         <div class="glow glow-a"></div>
         <div class="glow glow-b"></div>
+        <div class="noise-field"></div>
     </div>
 
     <!-- HEADER -->
@@ -42,8 +50,8 @@
         </a>
 
         <!-- MENU ICON -->
-        <div class="menu-toggle" id="menu-toggle">
-            <i class="fas fa-bars"></i>
+        <div class="menu-toggle" id="menu-toggle" role="button" aria-label="Open menu" aria-expanded="false" tabindex="0">
+            <span class="burger"><span></span><span></span><span></span></span>
         </div>
 
         <!-- NAV -->
@@ -56,7 +64,7 @@
             <span class="nav-index">05</span><a href="#contact">Contact</a>
 
             <!-- close button (mobile) -->
-            <div class="close-menu" id="close-menu">
+            <div class="close-menu" id="close-menu" role="button" aria-label="Close menu" tabindex="0">
                 <i class="fas fa-times"></i>
             </div>
 
@@ -69,53 +77,53 @@
 
         <div class="home-content">
 
-            <div class="status-line">
+            <div class="status-line hero-in" style="--d:0">
                 <span class="status-dot"></span>
                 <span>STATUS &mdash; AVAILABLE FOR FREELANCE</span>
             </div>
 
-            <h3 class="eyebrow">Hello, it's me</h3>
+            <h3 class="eyebrow hero-in" style="--d:1">Hello, it's me</h3>
 
-            <h1 class="hero-name">Endum Boris</h1>
+            <h1 class="hero-name hero-in" style="--d:2">Endum Boris</h1>
 
-            <h3 class="hero-role">
+            <h3 class="hero-role hero-in" style="--d:3">
                 Building <span class="multiple-text"></span>
             </h3>
 
-            <p>
-                Software Engineering student and full-stack developer based in
+            <p class="hero-in" style="--d:4">
+                Software Engineer and full-stack web developer based in
                 Douala, Cameroon. I design and ship responsive web applications
                 and database-driven systems that solve real operational problems.
             </p>
 
-            <div class="social-media">
+            <div class="social-media hero-in" style="--d:5">
 
-                <a href="https://www.facebook.com/ronaldo.alviero.359" aria-label="Facebook">
+                <a href="https://www.facebook.com/ronaldo.alviero.359" aria-label="Facebook" target="_blank" rel="noopener noreferrer" data-tip="Facebook">
                     <i class="fab fa-facebook-f"></i>
                 </a>
 
-                <a href="https://github.com/ororob" aria-label="GitHub">
+                <a href="https://github.com/ororob" aria-label="GitHub" target="_blank" rel="noopener noreferrer" data-tip="GitHub">
                     <i class="fab fa-github"></i>
                 </a>
 
-                <a href="https://cm.linkedin.com/in/endum-boris-7b37aa2bb" aria-label="LinkedIn">
+                <a href="https://cm.linkedin.com/in/endum-boris-7b37aa2bb" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer" data-tip="LinkedIn">
                     <i class="fab fa-linkedin-in"></i>
                 </a>
 
-                <a href="https://wa.me/237678603325" target="_blank" aria-label="WhatsApp">
+                <a href="https://wa.me/237678603325" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" data-tip="WhatsApp">
                     <i class="fab fa-whatsapp"></i>
                 </a>
 
             </div>
 
-            <div class="hero-buttons">
+            <div class="hero-buttons hero-in" style="--d:6">
 
-                <a href="boris cv.pdf" class="btn">
+                <a href="boris cv.pdf" class="btn magnetic" download>
                     <span>Download CV</span>
                     <i class="fas fa-arrow-down"></i>
                 </a>
 
-                <a href="#projects" class="btn btn-outline">
+                <a href="#projects" class="btn btn-outline magnetic">
                     View Projects
                 </a>
 
@@ -125,12 +133,29 @@
 
         <div class="home-img">
 
-            <div class="image-wrapper">
-                <div class="image-ring"></div>
-                <div class="image-circle">
-                    <img src="./ororo.jpg" alt="Endum Boris">
+            <div class="image-wrapper" id="image-wrapper">
+
+                <div class="orbit-particles" aria-hidden="true">
+                    <span></span><span></span><span></span><span></span><span></span><span></span>
                 </div>
-             <div class="coord-tag">Available Worldwide • Based in Cameroon</div>
+
+                <div class="image-ring"></div>
+                <div class="image-ring image-ring-2"></div>
+
+                <span class="float-tag tag-1" aria-hidden="true">FULL STACK</span>
+                <span class="float-tag tag-2" aria-hidden="true">DJANGO</span>
+                <span class="float-tag tag-3" aria-hidden="true">REACT</span>
+                <span class="float-tag tag-4" aria-hidden="true">NEXT.JS</span>
+                <span class="float-tag tag-5" aria-hidden="true">PHP</span>
+                <span class="float-tag tag-6" aria-hidden="true">POSTGRESQL</span>
+
+                <div class="image-frame">
+                    <div class="image-circle">
+                        <img src="./ororo.jpg" alt="Endum Boris" loading="eager">
+                    </div>
+                </div>
+
+                <div class="coord-tag">Available Worldwide • Based in Cameroon</div>
             </div>
 
         </div>
@@ -145,7 +170,7 @@
     <!-- ABOUT SECTION -->
     <section class="about" id="about">
 
-        <div class="section-head">
+        <div class="section-head reveal">
             <span class="section-tag"><span class="tag-index">02</span> About Me</span>
             <h2 class="section-title">
                 Building practical software<br>that delivers results
@@ -155,9 +180,9 @@
         <div class="bento-grid">
 
             <!-- bio: large tile -->
-            <div class="bento-card bento-bio">
+            <div class="bento-card bento-bio tilt-card reveal-3d">
                 <p class="about-intro">
-                    I'm <strong>Endum Boris</strong>, a Software Engineering student and
+                    I'm <strong>Endum Boris</strong>, a Software Engineer and
                     full-stack web developer passionate about creating scalable,
                     responsive, and user-focused digital products. I specialize in
                     turning ideas into functional applications that solve real
@@ -165,64 +190,65 @@
                     customer-facing platforms.
                 </p>
                 <p class="about-more">
-                    My project experience spans restaurant management systems,
-                    online bookshop platforms, portfolio websites, and smart
-                    inventory and sales management systems. Each build has
-                    sharpened my ability to design, develop, and deploy
-                    solutions that are both functional and visually considered.
+                    My work spans full-stack web development, frontend engineering,
+                    backend and API development, database design, and business
+                    management systems &mdash; including inventory platforms, booking
+                    systems, and portfolio-driven websites. Each build has sharpened
+                    my ability to design, develop, and deploy solutions that are both
+                    functional and visually considered.
                 </p>
             </div>
 
             <!-- focus card -->
-            <div class="bento-card bento-focus">
+            <div class="bento-card bento-focus tilt-card reveal-3d">
                 <i class="fas fa-code"></i>
-                <h3>Web Development</h3>
-                <p>Modern websites and web apps with clean code and responsive layouts.</p>
+                <h3>Full-Stack Development</h3>
+                <p>End-to-end web applications with clean code and responsive layouts.</p>
             </div>
 
-            <div class="bento-card bento-focus">
+            <div class="bento-card bento-focus tilt-card reveal-3d">
                 <i class="fas fa-database"></i>
-                <h3>Backend Systems</h3>
-                <p>Secure, database-driven applications using PHP and MySQL.</p>
+                <h3>Backend &amp; APIs</h3>
+                <p>Secure, database-driven systems using Django, PHP, and REST APIs.</p>
             </div>
 
             <!-- stats -->
-            <div class="bento-card bento-stat">
-                <h3 class="counter" data-target="3">0</h3>
+            <div class="bento-card bento-stat tilt-card reveal-scale">
+                <h3 class="counter" data-target="4">0</h3>
                 <span>Projects Completed</span>
             </div>
 
-            <div class="bento-card bento-stat">
+            <div class="bento-card bento-stat tilt-card reveal-scale">
                 <h3 class="counter" data-target="3">0</h3>
                 <span>Years of Learning</span>
             </div>
 
-            <div class="bento-card bento-stat">
-                <h3 class="counter" data-target="6">0</h3>
+            <div class="bento-card bento-stat tilt-card reveal-scale">
+                <h3 class="counter" data-target="25">0</h3>
                 <span>Technologies Used</span>
             </div>
 
-            <div class="bento-card bento-focus">
+            <div class="bento-card bento-focus tilt-card reveal-3d">
                 <i class="fas fa-lightbulb"></i>
                 <h3>Problem Solving</h3>
                 <p>Software that improves real business processes and user experience.</p>
             </div>
 
             <!-- tech stack strip -->
-            <div class="bento-card bento-stack">
-                <span class="stack-label">Toolkit</span>
+            <div class="bento-card bento-stack tilt-card reveal-3d">
+                <span class="stack-label">Core Toolkit</span>
                 <div class="tech-stack">
-                    <span>HTML5</span>
-                    <span>CSS3</span>
-                    <span>JavaScript</span>
-                    <span>PHP</span>
-                    <span>MySQL</span>
                     <span>React</span>
+                    <span>Django</span>
+                    <span>PHP</span>
+                    <span>PostgreSQL</span>
+                    <span>MySQL</span>
+                    <span>Next.js</span>
                 </div>
             </div>
 
             <!-- commitment -->
-            <div class="bento-card bento-commit">
+            <div class="bento-card bento-commit tilt-card reveal-scale">
                 <h3>100%</h3>
                 <span>Commitment</span>
             </div>
@@ -231,11 +257,11 @@
 
         <div class="about-buttons">
 
-            <a href="#projects" class="btn">
+            <a href="#projects" class="btn magnetic">
                 Explore My Work
             </a>
 
-            <a href="#contact" class="btn-outline">
+            <a href="#contact" class="btn-outline magnetic">
                 Let's Connect
             </a>
 
@@ -246,86 +272,284 @@
     <!-- SKILLS SECTION -->
     <section class="skills" id="skills">
 
-        <div class="section-head">
+        <div class="section-head reveal">
             <span class="section-tag"><span class="tag-index">03</span> My Expertise</span>
             <h2 class="section-title">Technical <span>Skills</span></h2>
             <p class="section-sub">
-                Tap or hover a card &mdash; drag it around the desk. Technologies I use
-                to build responsive, scalable, and modern web applications.
+                A working engineering desk &mdash; filter by category to explore the
+                stack I use to build responsive, scalable, and modern web applications.
             </p>
+        </div>
+
+        <div class="skill-filters reveal" role="tablist" aria-label="Filter skills by category">
+            <button class="filter-btn active" data-filter="all" role="tab" aria-selected="true">All</button>
+            <button class="filter-btn" data-filter="frontend" role="tab" aria-selected="false">Frontend</button>
+            <button class="filter-btn" data-filter="backend" role="tab" aria-selected="false">Backend</button>
+            <button class="filter-btn" data-filter="database" role="tab" aria-selected="false">Database</button>
+            <button class="filter-btn" data-filter="devops" role="tab" aria-selected="false">DevOps</button>
+            <button class="filter-btn" data-filter="tools" role="tab" aria-selected="false">Tools</button>
         </div>
 
         <div class="skills-desk" id="skills-desk">
 
-            <div class="skill-card" data-skill="html" style="--rot:-6deg; --x:2%; --y:6%;">
+            <!-- FRONTEND -->
+            <div class="skill-card tilt-card" data-category="frontend" data-level="94">
                 <div class="skill-face">
                     <i class="fab fa-html5"></i>
                     <h3>HTML5</h3>
-                    <div class="skill-meter"><div class="skill-fill" data-level="95"></div></div>
-                    <span class="skill-pct">95%</span>
+                    <span class="skill-tier">Core</span>
                 </div>
             </div>
 
-            <div class="skill-card" data-skill="css" style="--rot:4deg; --x:20%; --y:0%;">
+            <div class="skill-card tilt-card" data-category="frontend" data-level="90">
                 <div class="skill-face">
                     <i class="fab fa-css3-alt"></i>
                     <h3>CSS3</h3>
-                    <div class="skill-meter"><div class="skill-fill" data-level="90"></div></div>
-                    <span class="skill-pct">90%</span>
+                    <span class="skill-tier">Core</span>
                 </div>
             </div>
 
-            <div class="skill-card" data-skill="js" style="--rot:-3deg; --x:39%; --y:10%;">
+            <div class="skill-card tilt-card" data-category="frontend" data-level="85">
                 <div class="skill-face">
                     <i class="fab fa-js"></i>
                     <h3>JavaScript</h3>
-                    <div class="skill-meter"><div class="skill-fill" data-level="85"></div></div>
-                    <span class="skill-pct">85%</span>
+                    <span class="skill-tier">Proficient</span>
                 </div>
             </div>
 
-            <div class="skill-card" data-skill="react" style="--rot:7deg; --x:58%; --y:2%;">
+            <div class="skill-card tilt-card" data-category="frontend" data-level="65">
+                <div class="skill-face">
+                    <i class="fab fa-js"></i>
+                    <h3>TypeScript</h3>
+                    <span class="skill-tier">Working Knowledge</span>
+                </div>
+            </div>
+
+            <div class="skill-card tilt-card" data-category="frontend" data-level="78">
                 <div class="skill-face">
                     <i class="fab fa-react"></i>
                     <h3>React</h3>
-                    <div class="skill-meter"><div class="skill-fill" data-level="75"></div></div>
-                    <span class="skill-pct">75%</span>
+                    <span class="skill-tier">Proficient</span>
                 </div>
             </div>
 
-            <div class="skill-card" data-skill="php" style="--rot:-5deg; --x:76%; --y:8%;">
+            <div class="skill-card tilt-card" data-category="frontend" data-level="60">
+                <div class="skill-face">
+                    <i class="fas fa-layer-group"></i>
+                    <h3>Next.js</h3>
+                    <span class="skill-tier">Working Knowledge</span>
+                </div>
+            </div>
+
+            <div class="skill-card tilt-card" data-category="frontend tools" data-level="55">
+                <div class="skill-face">
+                    <i class="fas fa-bolt"></i>
+                    <h3>Vite</h3>
+                    <span class="skill-tier">Working Knowledge</span>
+                </div>
+            </div>
+
+            <div class="skill-card tilt-card" data-category="frontend" data-level="60">
+                <div class="skill-face">
+                    <i class="fas fa-wind"></i>
+                    <h3>Tailwind CSS</h3>
+                    <span class="skill-tier">Working Knowledge</span>
+                </div>
+            </div>
+
+            <div class="skill-card tilt-card" data-category="frontend" data-level="70">
+                <div class="skill-face">
+                    <i class="fas fa-route"></i>
+                    <h3>React Router</h3>
+                    <span class="skill-tier">Proficient</span>
+                </div>
+            </div>
+
+            <div class="skill-card tilt-card" data-category="frontend backend" data-level="72">
+                <div class="skill-face">
+                    <i class="fas fa-exchange-alt"></i>
+                    <h3>Axios</h3>
+                    <span class="skill-tier">Proficient</span>
+                </div>
+            </div>
+
+            <div class="skill-card tilt-card" data-category="frontend" data-level="50">
+                <div class="skill-face">
+                    <i class="fas fa-keyboard"></i>
+                    <h3>React Hook Form</h3>
+                    <span class="skill-tier">Exploring</span>
+                </div>
+            </div>
+
+            <div class="skill-card tilt-card" data-category="frontend" data-level="45">
+                <div class="skill-face">
+                    <i class="fas fa-shield-alt"></i>
+                    <h3>Zod</h3>
+                    <span class="skill-tier">Exploring</span>
+                </div>
+            </div>
+
+            <div class="skill-card tilt-card" data-category="frontend" data-level="45">
+                <div class="skill-face">
+                    <i class="fas fa-cubes"></i>
+                    <h3>Zustand</h3>
+                    <span class="skill-tier">Exploring</span>
+                </div>
+            </div>
+
+            <!-- BACKEND -->
+            <div class="skill-card tilt-card" data-category="backend" data-level="88">
                 <div class="skill-face">
                     <i class="fab fa-php"></i>
                     <h3>PHP</h3>
-                    <div class="skill-meter"><div class="skill-fill" data-level="85"></div></div>
-                    <span class="skill-pct">85%</span>
+                    <span class="skill-tier">Core</span>
                 </div>
             </div>
 
-            <div class="skill-card" data-skill="mysql" style="--rot:5deg; --x:8%; --y:52%;">
+            <div class="skill-card tilt-card" data-category="backend" data-level="72">
+                <div class="skill-face">
+                    <i class="fab fa-python"></i>
+                    <h3>Django</h3>
+                    <span class="skill-tier">Proficient</span>
+                </div>
+            </div>
+
+            <div class="skill-card tilt-card" data-category="backend" data-level="65">
+                <div class="skill-face">
+                    <i class="fas fa-server"></i>
+                    <h3>Django REST Framework</h3>
+                    <span class="skill-tier">Working Knowledge</span>
+                </div>
+            </div>
+
+            <div class="skill-card tilt-card" data-category="backend" data-level="80">
+                <div class="skill-face">
+                    <i class="fas fa-plug"></i>
+                    <h3>REST APIs</h3>
+                    <span class="skill-tier">Proficient</span>
+                </div>
+            </div>
+
+            <div class="skill-card tilt-card" data-category="backend" data-level="58">
+                <div class="skill-face">
+                    <i class="fas fa-key"></i>
+                    <h3>JWT Authentication</h3>
+                    <span class="skill-tier">Working Knowledge</span>
+                </div>
+            </div>
+
+            <!-- DATABASE -->
+            <div class="skill-card tilt-card" data-category="database" data-level="82">
                 <div class="skill-face">
                     <i class="fas fa-database"></i>
                     <h3>MySQL</h3>
-                    <div class="skill-meter"><div class="skill-fill" data-level="80"></div></div>
-                    <span class="skill-pct">80%</span>
+                    <span class="skill-tier">Proficient</span>
                 </div>
             </div>
 
-            <div class="skill-card" data-skill="github" style="--rot:-7deg; --x:29%; --y:58%;">
+            <div class="skill-card tilt-card" data-category="database" data-level="68">
+                <div class="skill-face">
+                    <i class="fas fa-elephant"></i>
+                    <h3>PostgreSQL</h3>
+                    <span class="skill-tier">Working Knowledge</span>
+                </div>
+            </div>
+
+            <div class="skill-card tilt-card" data-category="database" data-level="60">
+                <div class="skill-face">
+                    <i class="fas fa-hdd"></i>
+                    <h3>SQLite</h3>
+                    <span class="skill-tier">Working Knowledge</span>
+                </div>
+            </div>
+
+            <div class="skill-card tilt-card" data-category="database backend" data-level="75">
+                <div class="skill-face">
+                    <i class="fas fa-project-diagram"></i>
+                    <h3>Database Design</h3>
+                    <span class="skill-tier">Proficient</span>
+                </div>
+            </div>
+
+            <!-- DEVOPS -->
+            <div class="skill-card tilt-card" data-category="devops tools" data-level="85">
+                <div class="skill-face">
+                    <i class="fab fa-git-alt"></i>
+                    <h3>Git</h3>
+                    <span class="skill-tier">Core</span>
+                </div>
+            </div>
+
+            <div class="skill-card tilt-card" data-category="devops tools" data-level="85">
                 <div class="skill-face">
                     <i class="fab fa-github"></i>
                     <h3>GitHub</h3>
-                    <div class="skill-meter"><div class="skill-fill" data-level="85"></div></div>
-                    <span class="skill-pct">85%</span>
+                    <span class="skill-tier">Core</span>
                 </div>
             </div>
 
-            <div class="skill-card" data-skill="responsive" style="--rot:3deg; --x:50%; --y:50%;">
+            <div class="skill-card tilt-card" data-category="devops" data-level="55">
+                <div class="skill-face">
+                    <i class="fas fa-box"></i>
+                    <h3>Docker</h3>
+                    <span class="skill-tier">Working Knowledge</span>
+                </div>
+            </div>
+
+            <div class="skill-card tilt-card" data-category="devops" data-level="48">
+                <div class="skill-face">
+                    <i class="fas fa-boxes-stacked"></i>
+                    <h3>Docker Compose</h3>
+                    <span class="skill-tier">Exploring</span>
+                </div>
+            </div>
+
+            <div class="skill-card tilt-card" data-category="devops tools" data-level="70">
+                <div class="skill-face">
+                    <i class="fas fa-cloud-arrow-up"></i>
+                    <h3>Vercel</h3>
+                    <span class="skill-tier">Proficient</span>
+                </div>
+            </div>
+
+            <!-- TOOLS -->
+            <div class="skill-card tilt-card" data-category="tools" data-level="82">
+                <div class="skill-face">
+                    <i class="fas fa-code"></i>
+                    <h3>VS Code</h3>
+                    <span class="skill-tier">Core</span>
+                </div>
+            </div>
+
+            <div class="skill-card tilt-card" data-category="tools backend" data-level="70">
+                <div class="skill-face">
+                    <i class="fab fa-node-js"></i>
+                    <h3>Node.js</h3>
+                    <span class="skill-tier">Proficient</span>
+                </div>
+            </div>
+
+            <div class="skill-card tilt-card" data-category="tools" data-level="75">
+                <div class="skill-face">
+                    <i class="fas fa-box-open"></i>
+                    <h3>NPM</h3>
+                    <span class="skill-tier">Proficient</span>
+                </div>
+            </div>
+
+            <div class="skill-card tilt-card" data-category="tools backend" data-level="68">
+                <div class="skill-face">
+                    <i class="fab fa-python"></i>
+                    <h3>Python</h3>
+                    <span class="skill-tier">Working Knowledge</span>
+                </div>
+            </div>
+
+            <div class="skill-card tilt-card" data-category="frontend tools" data-level="95">
                 <div class="skill-face">
                     <i class="fas fa-mobile-alt"></i>
-                    <h3>Responsive</h3>
-                    <div class="skill-meter"><div class="skill-fill" data-level="95"></div></div>
-                    <span class="skill-pct">95%</span>
+                    <h3>Responsive Design</h3>
+                    <span class="skill-tier">Core</span>
                 </div>
             </div>
 
@@ -336,7 +560,7 @@
     <!-- PROJECTS SECTION -->
     <section class="projects" id="projects">
 
-        <div class="section-head">
+        <div class="section-head reveal">
             <span class="section-tag"><span class="tag-index">04</span> My Work</span>
             <h2 class="section-title">Featured <span>Projects</span></h2>
             <p class="section-sub">
@@ -348,7 +572,7 @@
         <div class="projects-container">
 
             <!-- PROJECT 1 -->
-            <article class="project-card">
+            <article class="project-card tilt-card reveal-3d">
 
                 <div class="project-media" data-scene="aquarium">
                     <div class="browser-chrome">
@@ -385,7 +609,7 @@
                     </div>
 
                     <div class="project-buttons">
-                        <a href="https://acq-nu.vercel.app/" target="_blank" class="project-btn">
+                        <a href="https://acq-nu.vercel.app/" target="_blank" rel="noopener noreferrer" class="project-btn magnetic">
                             Live Demo <i class="fas fa-arrow-up-right-from-square"></i>
                         </a>
                     </div>
@@ -395,7 +619,7 @@
             </article>
 
             <!-- PROJECT 2 -->
-            <article class="project-card">
+            <article class="project-card tilt-card reveal-3d">
 
                 <div class="project-media" data-scene="travel">
                     <div class="browser-chrome">
@@ -432,7 +656,7 @@
                     </div>
 
                     <div class="project-buttons">
-                        <a href="https://acq-wuts.vercel.app/" target="_blank" class="project-btn">
+                        <a href="https://acq-wuts.vercel.app/" target="_blank" rel="noopener noreferrer" class="project-btn magnetic">
                             Live Demo <i class="fas fa-arrow-up-right-from-square"></i>
                         </a>
                     </div>
@@ -442,7 +666,7 @@
             </article>
 
             <!-- PROJECT 3 -->
-            <article class="project-card">
+            <article class="project-card tilt-card reveal-3d">
 
                 <div class="project-media" data-scene="inventory">
                     <div class="browser-chrome">
@@ -477,68 +701,65 @@
                         <div><i class="fas fa-check"></i> Sales Reports</div>
                         <div><i class="fas fa-check"></i> Admin Dashboard</div>
                     </div>
- <div class="project-buttons">
-                        <a href="https://inventory-b67a.vercel.app/" target="_blank" class="project-btn">
+
+                    <div class="project-buttons">
+                        <a href="https://inventory-b67a.vercel.app/" target="_blank" rel="noopener noreferrer" class="project-btn magnetic">
                             Live Demo <i class="fas fa-arrow-up-right-from-square"></i>
                         </a>
                     </div>
+
                 </div>
 
             </article>
-<!--project 4-->
 
+            <!-- PROJECT 4 -->
+            <article class="project-card tilt-card reveal-3d">
 
-<article class="project-card">
+                <div class="project-media" data-scene="photography">
+                    <div class="browser-chrome">
+                        <span></span><span></span><span></span>
+                        <div class="browser-url">gstudio.com / portfolio</div>
+                    </div>
+                    <div class="project-visual">
+                        <i class="fas fa-camera"></i>
+                    </div>
+                </div>
 
-    <div class="project-media" data-scene="photography">
-        <div class="browser-chrome">
-            <span></span><span></span><span></span>
-            <div class="browser-url">gstudio.com / portfolio</div>
-        </div>
-        <div class="project-visual">
-            <i class="fas fa-camera"></i>
-        </div>
-    </div>
+                <div class="project-content">
 
-    <div class="project-content">
+                    <span class="project-index">Project 04</span>
 
-        <span class="project-index">Project 04</span>
+                    <h3>G Studio Photography &amp; Videography</h3>
 
-        <h3>G Studio Photography &amp; Videography</h3>
+                    <p>
+                        A premium photography and videography platform showcasing
+                        professional work, creative portfolios, video productions,
+                        and seamless client booking experiences.
+                    </p>
 
-        <p>
-            A premium photography and videography platform showcasing
-            professional work, creative portfolios, video productions,
-            and seamless client booking experiences.
-        </p>
+                    <div class="tech-stack">
+                        <span>HTML</span>
+                        <span>CSS</span>
+                        <span>JavaScript</span>
+                        <span>PHP</span>
+                    </div>
 
-        <div class="tech-stack">
-            <span>HTML</span>
-            <span>CSS</span>
-            <span>JavaScript</span>
-            <span>PHP</span>
-        </div>
+                    <div class="project-features">
+                        <div><i class="fas fa-check"></i> Photography Portfolio</div>
+                        <div><i class="fas fa-check"></i> Video Showcase</div>
+                        <div><i class="fas fa-check"></i> Online Booking</div>
+                    </div>
 
-        <div class="project-features">
-            <div><i class="fas fa-check"></i> Photography Portfolio</div>
-            <div><i class="fas fa-check"></i> Video Showcase</div>
-            <div><i class="fas fa-check"></i> Online Booking</div>
-        </div>
+                    <div class="project-buttons">
+                        <a href="https://photos-coral-pi.vercel.app/" target="_blank" rel="noopener noreferrer" class="project-btn magnetic">
+                            Live Demo <i class="fas fa-arrow-up-right-from-square"></i>
+                        </a>
+                    </div>
 
-        <div class="project-links">
-            <a href="https://photos-coral-pi.vercel.app/" target="_blank" rel="noopener noreferrer">
-                <i class="fas fa-external-link-alt"></i>
-                Live Demo
-            </a>
-        </div>
+                </div>
 
-    </div>
+            </article>
 
-</article>
-
-
-
-            
         </div>
 
     </section>
@@ -546,7 +767,7 @@
     <!-- CONTACT SECTION -->
     <section class="contact" id="contact">
 
-        <div class="section-head">
+        <div class="section-head reveal">
             <span class="section-tag"><span class="tag-index">05</span> Get In Touch</span>
             <h2 class="section-title">Let's Work <span>Together</span></h2>
             <p class="section-sub">
@@ -558,7 +779,7 @@
         <div class="contact-content">
 
             <!-- LEFT: console readout -->
-            <div class="contact-info">
+            <div class="contact-info tilt-card reveal-left">
 
                 <div class="console-header">
                     <span class="console-dot"></span>
@@ -590,25 +811,25 @@
                 </div>
 
                 <div class="social-links">
-                    <a href="https://github.com/ororob" aria-label="GitHub"><i class="fab fa-github"></i></a>
-                    <a href="https://cm.linkedin.com/in/endum-boris-7b37aa2bb" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
-                    <a href="https://wa.me/237678603325" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                    <a href="https://github.com/ororob" target="_blank" rel="noopener noreferrer" aria-label="GitHub" data-tip="GitHub"><i class="fab fa-github"></i></a>
+                    <a href="https://cm.linkedin.com/in/endum-boris-7b37aa2bb" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" data-tip="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://wa.me/237678603325" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" data-tip="WhatsApp"><i class="fab fa-whatsapp"></i></a>
                 </div>
 
             </div>
 
             <!-- FORM -->
-            <form id="contact-form" class="contact-form">
+            <form id="contact-form" class="contact-form tilt-card reveal-right" novalidate>
 
                 <div class="input-row">
 
                     <div class="input-box">
-                        <input type="text" id="name" required>
+                        <input type="text" id="name" placeholder=" " required>
                         <label>Full Name</label>
                     </div>
 
                     <div class="input-box">
-                        <input type="email" id="email" required>
+                        <input type="email" id="email" placeholder=" " required>
                         <label>Email Address</label>
                     </div>
 
@@ -617,28 +838,30 @@
                 <div class="input-row">
 
                     <div class="input-box">
-                        <input type="tel" id="phone" required>
+                        <input type="tel" id="phone" placeholder=" " required>
                         <label>Phone Number</label>
                     </div>
 
                     <div class="input-box">
-                        <input type="text" id="subject" required>
+                        <input type="text" id="subject" placeholder=" " required>
                         <label>Subject</label>
                     </div>
 
                 </div>
 
                 <div class="input-box textarea-box">
-                    <textarea id="message" required></textarea>
+                    <textarea id="message" placeholder=" " required></textarea>
                     <label>Your Message</label>
                 </div>
 
-                <button type="submit" class="btn">
-                    <span>Send Message</span>
-                    <i class="fas fa-paper-plane"></i>
+                <button type="submit" class="btn magnetic submit-btn" id="submit-btn">
+                    <span class="btn-label">Send Message</span>
+                    <i class="fas fa-paper-plane btn-icon"></i>
+                    <i class="fas fa-circle-notch fa-spin btn-spinner" aria-hidden="true"></i>
+                    <i class="fas fa-check btn-success" aria-hidden="true"></i>
                 </button>
 
-                <p class="form-note" id="form-note"></p>
+                <p class="form-note" id="form-note" role="status" aria-live="polite"></p>
 
             </form>
 
@@ -683,10 +906,10 @@
 
                 <div class="social-icons">
 
-                    <a href="https://github.com/ororob"><i class="fab fa-github"></i></a>
-                    <a href="https://cm.linkedin.com/in/endum-boris-7b37aa2bb"><i class="fab fa-linkedin"></i></a>
-                    <a href="https://wa.me/237678603325"><i class="fab fa-whatsapp"></i></a>
-                    <a href="https://www.facebook.com/ronaldo.alviero.359"><i class="fab fa-facebook"></i></a>
+                    <a href="https://github.com/ororob" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                    <a href="https://cm.linkedin.com/in/endum-boris-7b37aa2bb" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://wa.me/237678603325" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                    <a href="https://www.facebook.com/ronaldo.alviero.359" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
 
                 </div>
 
