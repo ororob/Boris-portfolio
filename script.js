@@ -43,21 +43,37 @@ document.addEventListener('DOMContentLoaded', () => {
     const closeMenu = document.getElementById('close-menu');
     const navbar = document.getElementById('navbar');
 
+    const isNavOpen = () => navbar?.classList.contains('active');
+
     const openNav = () => {
         navbar?.classList.add('active');
         menuToggle?.setAttribute('aria-expanded', 'true');
+        document.body.style.overflow = 'hidden';
     };
     const closeNav = () => {
         navbar?.classList.remove('active');
         menuToggle?.setAttribute('aria-expanded', 'false');
+        document.body.style.overflow = '';
     };
+    const toggleNav = () => { isNavOpen() ? closeNav() : openNav(); };
 
-    menuToggle?.addEventListener('click', openNav);
-    menuToggle?.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openNav(); } });
+    menuToggle?.addEventListener('click', toggleNav);
+    menuToggle?.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggleNav(); } });
     closeMenu?.addEventListener('click', closeNav);
     closeMenu?.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); closeNav(); } });
     navbar?.querySelectorAll('a').forEach(link => {
         link.addEventListener('click', closeNav);
+    });
+
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && isNavOpen()) closeNav();
+    });
+
+    document.addEventListener('click', (e) => {
+        if (!isNavOpen()) return;
+        const clickedInsideNav = navbar?.contains(e.target);
+        const clickedToggle = menuToggle?.contains(e.target);
+        if (!clickedInsideNav && !clickedToggle) closeNav();
     });
 
     /* ---------- Active nav link on scroll ---------- */
