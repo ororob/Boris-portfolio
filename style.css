@@ -635,9 +635,10 @@ section, header, footer { position: relative; z-index: 1; }
 .home-img { position: relative; display: flex; align-items: center; justify-content: center; perspective: 1200px; }
 
 .image-wrapper {
+    --img-size: clamp(220px, 32vw, 360px);
     position: relative;
-    width: min(100%, 360px);
-    aspect-ratio: 1 / 1;
+    width: var(--img-size);
+    height: var(--img-size);
     display: grid;
     place-items: center;
     transform-style: preserve-3d;
@@ -1607,5 +1608,5 @@ a.info-val:hover { color: var(--accent); }
 
 @media (max-width: 480px) {
     .hero-name { font-size: clamp(2.4rem, 11vw, 3.4rem); }
-    .image-wrapper { width: min(100%, 260px); }
+    .image-wrapper { --img-size: min(70vw, 260px); }
 }
