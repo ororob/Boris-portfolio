@@ -632,7 +632,7 @@ section, header, footer { position: relative; z-index: 1; }
 
 .hero-buttons { display: flex; gap: 16px; flex-wrap: wrap; }
 
-.home-img { position: relative; display: flex; justify-content: center; perspective: 1200px; }
+.home-img { position: relative; display: flex; align-items: center; justify-content: center; perspective: 1200px; }
 
 .image-wrapper {
     position: relative;
