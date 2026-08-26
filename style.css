@@ -433,10 +433,12 @@ section, header, footer { position: relative; z-index: 1; }
 
 .menu-toggle {
     display: none;
+    position: static;
     cursor: pointer;
     z-index: 110;
     width: 34px; height: 34px;
     place-items: center;
+    pointer-events: auto;
 }
 
 .burger {
@@ -647,7 +649,7 @@ section, header, footer { position: relative; z-index: 1; }
     position: absolute;
     inset: -20px;
     border: 1px dashed var(--line-soft);
-    border-radius: 38%;
+    border-radius: 50%;
     animation: spin 22s linear infinite;
 }
 
@@ -664,7 +666,7 @@ section, header, footer { position: relative; z-index: 1; }
 
 .image-ring-2 {
     inset: -42px;
-    border-radius: 42%;
+    border-radius: 50%;
     border-color: rgba(245,166,35,0.14);
     animation-duration: 34s;
     animation-direction: reverse;
@@ -698,7 +700,7 @@ section, header, footer { position: relative; z-index: 1; }
     position: relative;
     width: 100%;
     height: 100%;
-    border-radius: 32px;
+    border-radius: 50%;
     padding: 6px;
     background: linear-gradient(160deg, rgba(94,234,212,0.35), rgba(255,255,255,0.05) 40%, rgba(245,166,35,0.18));
     box-shadow: var(--depth-3);
@@ -708,7 +710,7 @@ section, header, footer { position: relative; z-index: 1; }
 .image-circle {
     width: 100%;
     height: 100%;
-    border-radius: 26px;
+    border-radius: 50%;
     overflow: hidden;
     border: 1px solid var(--line);
     background: var(--surface);
@@ -808,13 +810,35 @@ section, header, footer { position: relative; z-index: 1; }
     --tz: 0px;
     --mx: 50%;
     --my: 50%;
+    --tx: 0px;
+    --ty: 0px;
+    --tscale: 1;
     transform-style: preserve-3d;
     perspective: 900px;
     position: relative;
-    transform: perspective(900px) rotateX(var(--rx)) rotateY(var(--ry)) translateZ(var(--tz));
-    transition: transform 0.35s var(--ease), box-shadow 0.35s var(--ease), border-color 0.35s var(--ease);
+    transform: translate(var(--tx), var(--ty)) scale(var(--tscale)) perspective(900px) rotateX(var(--rx)) rotateY(var(--ry)) translateZ(var(--tz));
+    transition: transform 0.5s var(--ease), box-shadow 0.35s var(--ease), border-color 0.35s var(--ease), opacity 0.5s var(--ease);
     will-change: transform;
 }
+
+/* When a reveal-* class is combined with .tilt-card, drive the shared
+   custom properties instead of the transform shorthand so the scroll-reveal
+   motion and the mouse-tilt hover effect compose instead of one overwriting
+   the other. */
+.tilt-card.reveal { --ty: 24px; opacity: 0; }
+.tilt-card.reveal.in-view { --ty: 0px; opacity: 1; }
+
+.tilt-card.reveal-left { --tx: -36px; opacity: 0; }
+.tilt-card.reveal-left.in-view { --tx: 0px; opacity: 1; }
+
+.tilt-card.reveal-right { --tx: 36px; opacity: 0; }
+.tilt-card.reveal-right.in-view { --tx: 0px; opacity: 1; }
+
+.tilt-card.reveal-scale { --tscale: 0.88; opacity: 0; }
+.tilt-card.reveal-scale.in-view { --tscale: 1; opacity: 1; }
+
+.tilt-card.reveal-3d { --ty: 30px; --tscale: 0.96; --rx: 8deg; opacity: 0; }
+.tilt-card.reveal-3d.in-view { --ty: 0px; --tscale: 1; --rx: 0deg; opacity: 1; }
 
 .tilt-card::before {
     content: "";
@@ -897,6 +921,13 @@ section, header, footer { position: relative; z-index: 1; }
 .projects-container .reveal-3d:nth-child(2) { transition-delay: 0.08s; }
 .projects-container .reveal-3d:nth-child(3) { transition-delay: 0.16s; }
 .projects-container .reveal-3d:nth-child(4) { transition-delay: 0.24s; }
+
+.skills-desk .reveal-scale:nth-child(6n+1) { transition-delay: 0s; }
+.skills-desk .reveal-scale:nth-child(6n+2) { transition-delay: 0.05s; }
+.skills-desk .reveal-scale:nth-child(6n+3) { transition-delay: 0.1s; }
+.skills-desk .reveal-scale:nth-child(6n+4) { transition-delay: 0.15s; }
+.skills-desk .reveal-scale:nth-child(6n+5) { transition-delay: 0.2s; }
+.skills-desk .reveal-scale:nth-child(6n+6) { transition-delay: 0.25s; }
 
 @media (prefers-reduced-motion: reduce) {
     .reveal, .reveal-left, .reveal-right, .reveal-scale, .reveal-3d {
@@ -1460,7 +1491,7 @@ a.info-val:hover { color: var(--accent); }
    Footer
    ========================================================================== */
 
-.footer { border-top: 1px solid var(--line); padding: 70px 48px 30px; }
+.footer { position: static; border-top: 1px solid var(--line); padding: 70px 48px 30px; }
 
 .footer-container {
     max-width: 1160px;
@@ -1577,6 +1608,4 @@ a.info-val:hover { color: var(--accent); }
 @media (max-width: 480px) {
     .hero-name { font-size: clamp(2.4rem, 11vw, 3.4rem); }
     .image-wrapper { width: min(100%, 260px); }
-    .image-frame { border-radius: 24px; }
-    .image-circle { border-radius: 19px; }
 }
